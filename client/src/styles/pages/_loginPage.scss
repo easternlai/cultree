@@ -1,0 +1,55 @@
+.login{
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-secondary-fog;
+
+    &__wrapper{
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        background-color: $color-white;
+        border-radius: 10px;
+        border: 1px solid $color-grey;
+        box-shadow: 0 0 1px;
+    
+    }
+    &__form{
+        display: flex;
+        flex-direction: column;
+    }
+    &__input{
+        height: 60px;
+        border-radius: 10px;
+        font-size: 2rem;
+        padding-left: 20px;
+        margin-top: 20px;
+        border-color: $color-grey;
+    }
+
+    &__signin{
+        text-align: center;
+        color: $color-primary;
+
+        &__help {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: $color-black;
+        }
+    }
+
+    &__button{
+        margin-top: 30px;
+        padding: 20px;
+        border: none;
+        background-color: $color-secondary-red;
+        color: $color-white;
+        font-size: 2rem;
+        border-radius: 10px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}
+

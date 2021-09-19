@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useEffect, Suspense } from "react";
+import { Switch, Route, BrowserRouter, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import HomePage from "./pages/HomePage/HomePage";
 
-function App() {
+import ProtectedRoute from "./components/Routing/ProtectedRoute";
+
+import { loginStart } from "./redux/user/userActions";
+import userTypes from "./redux/user/userTypes";
+import Header from "./components/Header/Header";
+
+export function App({ loginStart, currentUser }) {
+  const token = localStorage.getItem("token");
+
+  const {
+    location: { pathname },
+  } = useHistory();
+
+  useEffect(() => {
+    //login start with just token if token exist
+    if (token) {
+      loginStart(null, null, token);
+    }
+    //if token exist connect socket
+  }, [loginStart, token]);
+
+  const renderApp = () => {
+    if (!currentUser && token) {
+      return <p>loading....</p>;
+    }
+
+    return (
+      <Fragment>
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          <ProtectedRoute exact path="/" component={HomePage} />
+        </Switch>
+      </Fragment>
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Suspense fallback={<p>Loading</p>}>{renderApp()}</Suspense>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchtoProps = (dispatch) => ({
+  loginStart: (usernameOrEmail, password, token) =>
+    dispatch(loginStart(usernameOrEmail, password, token)),
+});
+
+export default connect(mapStateToProps, mapDispatchtoProps)(App);
