@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { rawListeners } = require('../models/Event');
 
 module.exports.requireAuth = async (req, res, next ) => {
     const {token } = req.headers;
@@ -13,9 +12,6 @@ module.exports.requireAuth = async (req, res, next ) => {
                 return next();
         });
     } catch (err) {
-        console.log(err)
         return res.status(401).send({error: err});
     }
-    
-    next();
 }
