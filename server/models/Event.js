@@ -25,7 +25,6 @@ const EventSchema = new Schema({
 
 //pre delete, delete comment and participant list
 
-
 const eventModel = mongoose.model('events', EventSchema);
 
 module.exports = eventModel;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ParticipantListSchema = new Schema ({
+const ParticipantsListSchema = new Schema ({
     event: {
         type: Schema.ObjectId,
         ref: 'Event'
@@ -9,6 +9,6 @@ const ParticipantListSchema = new Schema ({
     list: [{ attendee: { type: Schema.ObjectId, ref: 'User'}}]
 });
 
-const ParticipantListModel = mongoose.model('ParticipantList',ParticipantListSchema);
+const ParticipantsListModel = mongoose.model('ParticipantsList',ParticipantsListSchema);
 
-module.exports = ParticipantListModel;
+module.exports = ParticipantsListModel;
