@@ -5,6 +5,8 @@ const Event = require('../models/Event');
 const ParticipantList = require('../models/ParticipantList');
 const User = require('../models/User');
 
+const {attendEventSocket} = require('../handlers/socketHandler');
+
 module.exports.createEvent = async (req, res, next) => {
     const { location, date, type, caption, name, time } = req.body;
     let { image } = req.body;
@@ -42,7 +44,7 @@ module.exports.createEvent = async (req, res, next) => {
 
         await event.save();
         await participantList.save();
-        res.send({...event.toObject(), organizer:{fullName: user.fullName, username: user.username, email: user.email}});
+        res.send({...event.toObject(), organizer:{fullName: user.fullName, username: user.username, email: user}});
 
     } catch (err) {
         next(err);
@@ -132,7 +134,7 @@ module.exports.attendEvent = async (req, res, next) => {
                     return res.status(500).send({error: 'Could not remove attendee.'})
             }
         }
-
+        attendEventSocket(req, eventId, user.id);
         return res.send({ success: true });
     } catch (err) {
         next(err);
