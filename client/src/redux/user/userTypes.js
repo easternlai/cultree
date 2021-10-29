@@ -3,6 +3,7 @@ const userTypes = {
     SIGN_OUT: 'SIGN_OUT',
     SIGN_UP_FAILURE: 'SIGN_UP_FAILURE',
     SIGN_IN_FAILURE: 'SIGN_IN_FAILURE',
+    LOGIN_START: 'LOGIN_START'
 }
 
 export default userTypes;

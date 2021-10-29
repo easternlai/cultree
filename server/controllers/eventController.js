@@ -5,7 +5,7 @@ const Event = require('../models/Event');
 const ParticipantList = require('../models/ParticipantList');
 const User = require('../models/User');
 
-const {attendEventSocket} = require('../handlers/socketHandler');
+const { attendEventSocket, sendNewEvent } = require('../handlers/socketHandler');
 
 module.exports.createEvent = async (req, res, next) => {
     const { location, date, type, caption, name, time } = req.body;
@@ -44,7 +44,25 @@ module.exports.createEvent = async (req, res, next) => {
 
         await event.save();
         await participantList.save();
-        res.send({...event.toObject(), organizer:{fullName: user.fullName, username: user.username, email: user}});
+        res.send({ ...event.toObject(), organizer: { fullName: user.fullName, username: user.username, email: user.email } });
+
+        //Socket Handler
+        const receivers = await User.aggregate([
+            {
+                $match: {
+                    tenantId: user.tenantId
+                },
+            },
+            {
+                $project: {
+                    _id: true
+                }
+            }
+        ]);
+
+        receivers.map((receiver) => {
+            sendNewEvent(req, { ...event.toObject(), participantsList: [], organizer: { fullName: user.fullName, username: user.username, email: user.email } }, receiver)
+        });
 
     } catch (err) {
         next(err);
@@ -73,10 +91,10 @@ module.exports.retrieveEvents = async (req, res, next) => {
                 }
             },
             {
-                $lookup:{
+                $lookup: {
                     from: 'participantslists',
-                    localField:'_id',
-                    foreignField:'event',
+                    localField: '_id',
+                    foreignField: 'event',
                     as: 'participantsList',
                 }
             },
@@ -97,13 +115,65 @@ module.exports.retrieveEvents = async (req, res, next) => {
                 ],
             },
             {
-                $addFields: { participantsList: '$participantsList.list'}
+                $addFields: { participantsList: '$participantsList.list' }
             },
         ]);
 
         return res.send(events);
+
     } catch (err) {
 
+    }
+}
+
+module.exports.getEvent = async (req, res, next) => {
+    const { eventId } = req.params;
+
+    try {
+        const event = await Event.aggregate([
+            {
+                $match: { _id: ObjectId(eventId)}
+            },
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'organizer',
+                    foreignField: '_id',
+                    as: 'organizer'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'participantslists',
+                    localField: '_id',
+                    foreignField: 'event',
+                    as: 'participantsList'
+                }
+            },
+            {
+                $unwind: "$organizer",
+            },
+            {
+                $unwind: "$participantsList",
+            },
+            {
+                $unset: [
+                    'organizer._id',
+                    'organizer.tenantId',
+                    'organizer.password',
+                    'organizer.admin',
+                    'organizer.__v',
+                    '__v',
+                ],
+            },
+            {
+                $addFields: { participantsList: '$participantsList.list' }
+            },
+        ]);
+        console.log(event[0])
+        return res.send(event[0]);
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -130,11 +200,11 @@ module.exports.attendEvent = async (req, res, next) => {
                     $pull: { list: { attendee: user.id } }
                 }
             );
-            if(unattendEventUpdate.modifiedCount == 0 ){
-                    return res.status(500).send({error: 'Could not remove attendee.'})
+            if (unattendEventUpdate.modifiedCount == 0) {
+                return res.status(500).send({ error: 'Could not remove attendee.' })
             }
         }
-        attendEventSocket(req, eventId, user.id);
+
         return res.send({ success: true });
     } catch (err) {
         next(err);

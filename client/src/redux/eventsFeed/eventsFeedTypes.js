@@ -1,0 +1,8 @@
+const eventsFeedTypes = {
+    FETCH_EVENTS_START: 'FETCH_EVENTS_START',
+    FETCH_EVENTS_SUCCESS: 'FETCH_EVENTS_SUCCESS',
+    FETCH_EVENTS_FAILURE: 'FETCH_EVENTS_FAILURE',
+    ADD_EVENT: 'ADD_EVENT',
+}
+
+export default eventsFeedTypes;

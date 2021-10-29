@@ -6,7 +6,7 @@ const ProtectedRoute = ({token, children, ...props}) => {
     return (
         <Route {...props}>{token ? children : <Redirect to="/login" />}</Route>
     )
-}
+};
 
 const mapStateToProps = (state) => ({
     token: state.user.token

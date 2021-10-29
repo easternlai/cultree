@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Company = require("../models/Company");
 const User = require("../models/User");
-const ObjectId = require("mongodb").ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId;
 
 const {
   validateFullName,
@@ -17,20 +17,20 @@ module.exports.login = async (req, res, next) => {
   const { usernameOrEmail, password } = req.body || null;
 
   try {
-    if(token){
-        const decodedId = await jwt.verify(token, process.env.JWT_SECRET).id;
-        const decodedUser = await User.findById(decodedId);
+    if (token) {
+      const decodedId = await jwt.verify(token, process.env.JWT_SECRET).id;
+      const decodedUser = await User.findById(decodedId);
 
-        return res.send({
-            user: {
-              _id: decodedUser._id,
-              fullName: decodedUser.fullName,
-              email: decodedUser.email,
-              admin: decodedUser.admin,
-              tenantId: decodedUser.tenantId,
-            },
-            token
-            });
+      return res.send({
+        user: {
+          _id: decodedUser._id,
+          fullName: decodedUser.fullName,
+          email: decodedUser.email,
+          admin: decodedUser.admin,
+          tenantId: decodedUser.tenantId,
+        },
+        token
+      });
     }
 
     //if not username or password return error
@@ -69,7 +69,7 @@ module.exports.login = async (req, res, next) => {
           admin: user.admin,
           tenantId: user.tenantId,
         },
-        token: jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+        token: jwt.sign({ id: user._id, tenantId: user.tenantId }, process.env.JWT_SECRET, {
           expiresIn: "5h",
         }),
       });
@@ -158,7 +158,7 @@ module.exports.registerTenant = async (req, res, next) => {
         admin: user.admin,
         tenantId: user.tenantId,
       },
-      token: jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      token: jwt.sign({ id: user._id, tenantId: user.tenantId }, process.env.JWT_SECRET, {
         expiresIn: "5h",
       }),
     });

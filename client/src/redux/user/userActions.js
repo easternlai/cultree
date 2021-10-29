@@ -13,10 +13,11 @@ export const signout = () => dispatch=> {
 
 export const loginStart = (usernameOrEmail, password, token) => async (dispatch) => {
     try {
+        dispatch({type: userTypes.LOGIN_START});
         const res = await loginAuthentication(usernameOrEmail, password, token);
         dispatch(loadUser(res));
     } catch (err) {
-        dispatch(signout);
+        dispatch(signout());
         console.log(err);
     }
 }

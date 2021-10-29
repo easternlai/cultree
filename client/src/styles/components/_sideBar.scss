@@ -4,41 +4,8 @@
     top: 0;
     height: 100vh;
     border-left: 1.5px solid #EFF3F4;
-
-    &-wrapper{
-        display: flex;
-        flex-direction: column;
-    }
-    &-top{
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        margin-top: 10px;
-        &__settings{
-            margin-right: 10px;
-            font-size: 2rem;
-            color: $color-secondary-sea;
-            cursor: pointer;
-        }
-        &__icon{
-            background-color: $color-secondary-fog;
-            border-radius: 50%;
-            height: 15px;
-            width: 15px;
-            padding: 6px;
-            margin-right: 100px;
-            text-align: center;
-            line-height: 12px;
-            cursor: pointer;
-            
-            &__initial{
-                font-size: 1.5rem;
-                font-family: 'Assistant', sans-serif;
-                font-weight: 500;
-                color: $color-secondary-red;
-            }
-        }
-    }
+    display: flex;
+    flex-direction: column;
 
     &-announcements {
         margin-top: 20px;

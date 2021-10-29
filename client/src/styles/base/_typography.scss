@@ -3,7 +3,6 @@ body {
     font-weight: 400;
     line-height: 1.7;
   }
-  
 
 .heading-logo {
     font-size: 2rem;
@@ -19,9 +18,19 @@ body {
     }
 }
 
+.heading-super {
+  font-size: 4rem;
+}
+
 .heading-1 {
     font-size: 3rem;
     color: $color-black;
+  }
+
+  .heading-1__bold {
+    font-size: 3rem;
+    color: $color-black;
+    font-weight: bold;
   }
   
   .heading-2 {
@@ -39,8 +48,25 @@ body {
     font-size: 1.4rem;
     color: $color-black;
   }
+  .heading-4__bold {
+    font-size: 1.4rem;
+    color: $color-black;
+    font-weight: bold;
+  }
+  
   
   .heading-5 {
     font-size: 1.2rem;
     color: $color-black;
+  }
+
+  .heading-5__bold{
+    font-size: 1.2rem;
+    color: $color-black;
+    font-weight: bold;
+  }
+
+  .no-dec{
+    text-decoration: none;
+    color: inherit;
   }

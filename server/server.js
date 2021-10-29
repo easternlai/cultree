@@ -33,18 +33,27 @@ app.use("/api", apiRouter);
 const expressServer = app.listen(PORT, () => {
   console.log(`Backend listening on port ${PORT}`);
 });
-const io = socketio(expressServer);
+// const io = socketio(expressServer);
+
+const io = require('socket.io')(expressServer,{
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["*"]
+  }
+})
+
 app.set('socketio', io);
 
 io.use((socket, next)=>{
     const token = socket.handshake.query.token;
-    console.log(token);
     if(token){
         try{
             const user = jwt.verify(token, process.env.JWT_SECRET);
+
             if(!user){
                 return next(new Error('Not authorized.'));
             }
+            
             socket.user = user;
             return next();
         }catch(err){
@@ -54,7 +63,7 @@ io.use((socket, next)=>{
     }else{
         return next( new Error('Not authorized.'));
     }
-}).on('connection', (socket)=>{
+}).on('connection', async (socket)=>{
     socket.join(socket.user.id);
     console.log('socket connected: ', socket.id);
 });

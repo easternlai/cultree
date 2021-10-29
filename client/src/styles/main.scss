@@ -10,6 +10,8 @@
 @import './components/eventsFeed';
 @import './components/navBar';
 @import './components/sideBar';
+@import './components/eventDialog';
+@import './components/settingsLogout';
 
 //layouts
 @import './layout/body';
@@ -18,3 +20,5 @@
 @import './pages/homePage';
 @import './pages/loginPage';
 @import './pages/registerPage';
+@import './pages/adminPortal';
+@import './pages/eventPage';

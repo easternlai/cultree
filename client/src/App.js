@@ -8,26 +8,31 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProtectedRoute from "./components/Routing/ProtectedRoute";
 
 import { loginStart } from "./redux/user/userActions";
-import userTypes from "./redux/user/userTypes";
-import Header from "./components/Header/Header";
+import { connectSocket } from "./redux/socket/socketActions";
+import EventPage from "./pages/EventPage/EventPage";
+import AdminRoute from "./components/Routing/AdminRoute";
+import AdminPortal from "./pages/AdminPortal/AdminPortal";
+import CreateUser from "./pages/AdminPortal/CreateUser";
 
-export function App({ loginStart, currentUser }) {
-  const token = localStorage.getItem("token");
+export function App({ loginStart, connectSocket, currentUser, authToken }) {
+  const localToken = localStorage.getItem("token");
 
   const {
     location: { pathname },
   } = useHistory();
 
   useEffect(() => {
-    //login start with just token if token exist
-    if (token) {
-      loginStart(null, null, token);
+    if (localToken) {
+      loginStart(null, null, localToken);
     }
-    //if token exist connect socket
-  }, [loginStart, token]);
+    if(authToken){
+      connectSocket();
+    }
+    
+  }, [loginStart, connectSocket, localToken, authToken]);
 
   const renderApp = () => {
-    if (!currentUser && token) {
+    if (!currentUser && localToken) {
       return <p>loading....</p>;
     }
 
@@ -37,6 +42,9 @@ export function App({ loginStart, currentUser }) {
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <ProtectedRoute exact path="/" component={HomePage} />
+          <ProtectedRoute path="/event/:eventId" component={EventPage} />
+          <AdminRoute exact path="/admin" component={AdminPortal} />
+          <AdminRoute exact path="/admin/createuser" component={CreateUser} />
         </Switch>
       </Fragment>
     );
@@ -51,11 +59,13 @@ export function App({ loginStart, currentUser }) {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
+  authToken: state.user.token,
 });
 
 const mapDispatchtoProps = (dispatch) => ({
   loginStart: (usernameOrEmail, password, token) =>
     dispatch(loginStart(usernameOrEmail, password, token)),
+  connectSocket: () => dispatch(connectSocket())
 });
 
 export default connect(mapStateToProps, mapDispatchtoProps)(App);

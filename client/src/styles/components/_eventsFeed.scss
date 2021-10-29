@@ -1,18 +1,28 @@
 .feed {
     flex: 2.7;
+    padding-top: 10px;
     &-wrapper {
         display: flex;
         flex-direction: column;
         min-width: 600px;
     }
+    &__header-wrapper {
+        position: sticky;
+        top: 0;
+        z-index: 99999;
+        background-color: $color-white;
+    }
+
+    &__body-wrapper {
+        margin-top: 20px;
+    }
+    
     &-search-div{
         display: flex;
         justify-content: center;
-        margin-top: 10px;
+  
         margin-left: 20px;
         
-       
-  
         &__input{
             background-color: $color-grey;
             width: 60%;
@@ -30,7 +40,7 @@
     &-sort-div{
         display: flex;
         justify-content: space-evenly;
-        margin: 10px;
+        margin: 0 20px;
         padding-bottom: 10px;
         border-bottom: 1.5px solid #EFF3F4;
 
@@ -46,6 +56,9 @@
             }
     
         }
+    }
+    &-events-wrapper {
+        padding: 0 20px;
     }
 
 }

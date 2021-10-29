@@ -13,7 +13,7 @@ const Header = ({currentUser, signout}) => {
             </div>
             <div className="header-right" onClick={signout}>
                 <div className="user-icon">
-                    <span className="user-icon__initials">{currentUser.fullName[0].toLowerCase()}</span>
+                    <span className="user-icon__initials">{'T'}</span>
                 </div>
             </div>
         </div>

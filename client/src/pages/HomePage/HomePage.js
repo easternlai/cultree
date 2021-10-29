@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import EventsFeed from '../../components/EventsFeed/EventsFeed';
-import Header from '../../components/Header/Header';
 import NavBar from '../../components/NavBar/NavBar';
 import SideBar from '../../components/SideBar/SideBar';
 
