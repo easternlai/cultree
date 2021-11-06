@@ -2,10 +2,11 @@
     flex: 4;
     position: sticky;
     top: 0;
-    height: 100vh;
     border-left: 1.5px solid #EFF3F4;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+
 
     &-announcements {
         margin-top: 20px;
@@ -13,6 +14,8 @@
         margin-right: 120px;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
+        overflow-y: auto;
 
         &__heading{
             margin-bottom: 15px;

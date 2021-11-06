@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { attendEvent } from '../../services/eventServices';
 import { EventDialogReducer, INITIAL_STATE } from './eventDialogReducer';
-import { attendeeUpdate } from './EventDialogAction';
 
 const EventDialog = ({ eventData, eventId, key, token, currentUser, socket }) => {
 
@@ -39,7 +38,7 @@ const EventDialog = ({ eventData, eventId, key, token, currentUser, socket }) =>
                 <img src={eventData.image} className="event-dialog-image"/>
                 <div className="event-dialog-attendees heading-4">
                     <div className="event-dialog-attendees__count">{state.data.participantsList.length} {state.data.participantsList.length==1?<span>attendee</span>:<span>attendees</span>}</div>
-                    <div className="event-dialog-attendees__addbutton" onClick={handleAttendeeUpdate}>Attend</div>
+                    <div className="event-dialog-attendees__addbutton" onClick={handleAttendeeUpdate}>{!state.data.participantsList.find((participant => participant.attendee == currentUser._id))? <span>Attend</span>:<span>Unattend</span>}</div>
                 </div>
             </div>
 
