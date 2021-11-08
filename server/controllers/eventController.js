@@ -3,6 +3,7 @@ const fs = require('fs');
 const S3 = require('aws-sdk/clients/S3')
 const Event = require('../models/Event');
 const ParticipantList = require('../models/ParticipantList');
+const Comment = require('../models/Comment');
 const User = require('../models/User');
 
 const { attendEventSocket, sendNewEvent } = require('../handlers/socketHandler');
@@ -143,19 +144,9 @@ module.exports.getEvent = async (req, res, next) => {
                 }
             },
             {
-                $lookup: {
-                    from: 'participantslists',
-                    localField: '_id',
-                    foreignField: 'event',
-                    as: 'participantsList'
-                }
-            },
-            {
                 $unwind: "$organizer",
             },
-            {
-                $unwind: "$participantsList",
-            },
+
             {
                 $unset: [
                     'organizer._id',
@@ -166,12 +157,73 @@ module.exports.getEvent = async (req, res, next) => {
                     '__v',
                 ],
             },
-            {
-                $addFields: { participantsList: '$participantsList.list' }
-            },
+
         ]);
-        console.log(event[0])
-        return res.send(event[0]);
+
+        const list = await ParticipantList.aggregate([
+            {
+                $match: {event: ObjectId(eventId)}
+            },
+            {
+                $unwind: {
+                    path: '$list'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'list.attendee',
+                    foreignField: '_id',
+                    as: 'list.attendee'
+                }
+            },
+            {
+                $unwind: {
+                    path: '$list.attendee'
+                }
+            },
+            {
+                $addFields:{
+                    fullName: '$list.attendee.fullName',
+                }
+            },
+            {
+                $project: {
+                    'fullName':true,
+                    _id: false,
+
+                }
+            }
+        ]);
+
+        const messages = await Comment.aggregate([
+            {
+                $match: { event: ObjectId(eventId)},
+            },
+            { 
+                $lookup: { 
+                    from: 'users',
+                    localField: 'author',
+                    foreignField: '_id',
+                    as: 'users'
+
+                }
+            },
+            {
+                $unwind: '$users'
+            },
+            {
+                $addFields: {
+                    author: {
+                        email: '$users.email',
+                        fullName: '$users.fullName'
+                    }
+                }
+            }
+
+        ]);
+
+        return res.send({...event[0], participantsList: list, comments: messages});
     } catch (err) {
         console.log(err)
     }
