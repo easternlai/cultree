@@ -11,7 +11,6 @@ export const attendEvent = async (eventId, token) => {
                 headers: { token }
             }
         );
-        console.log(response.data);
         return response;
     } catch (err) {
 
@@ -31,4 +30,19 @@ export const getEvent = async (eventId, token) => {
     } catch (err) {
         console.log( err.response.data );
     }
+}
+
+export const createComment = async (eventId, token, message) =>{
+        console.log('test')
+        try {
+            const response = await axios(apiUrl+`/api/comment/${eventId}`,
+            {
+                method: 'POST',
+                headers: {token},
+                data:{message}
+            });
+            return response.data;
+        } catch (err) {
+            console.log(err.response.data);
+        }
 }

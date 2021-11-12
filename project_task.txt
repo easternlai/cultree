@@ -1,0 +1,28 @@
+APP WIDE
+- create store 
+- create photo album
+- create announcments
+- create sortable events (past, all, upcoming)
+- create Surveys
+- Create Bookmarks
+- Create ability to delete
+- Create ability to change password
+- create ability to post avatar
+- Testing
+- Service Worker
+
+
+BACK_END
+- Improve mongodb aggregate for attendees names.  Currently combining two different aggregates
+
+Front_END
+- make code consistent
+- determine which components be combined
+- make app responsive
+- make sidebar scrollable
+- create avatar
+
+INFRASTRUCTURE
+- push to AWS
+- Create different branches for frontend/backend/etc
+- Refine process to update code and push to password

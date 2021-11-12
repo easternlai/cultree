@@ -1,0 +1,9 @@
+.layout-flat{
+
+    &__body {
+        grid-column: 2 /span 2;
+        border-left: $border-outline;
+        padding: 0 20px;
+        
+    }
+}

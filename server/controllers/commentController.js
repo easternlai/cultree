@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const Comment = require('../models/Comment');
-const ObjectId = require('mongoose')
+const ObjectId = require('mongoose');
+const moment = require('moment');
 
 module.exports.createComment = async (req, res, next) => {
     const {eventId} = req.params;
@@ -21,12 +22,12 @@ module.exports.createComment = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-    console.log(user);
 
     const comment = new Comment({
         message,
         author: userId,
-        event: eventId
+        event: eventId,
+        date: moment().format()
     })
 
     await comment.save();

@@ -1,15 +1,20 @@
 import React, { useReducer } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Link } from 'react-router-dom';
+import LayoutFlat from '../../layouts/LayoutFlat';
 
-const AdminRoute = ({ children, user, ...props }) => {
+const AdminRoute = ({ children, token, admin, ...props }) => {
+    if(!token && admin){
+        return <Redirect to="/" />
+    }
     return (
-        <Route {...props}>{user.currentUser.admin ? children : <Redirect to="/" />}</Route>
+        <LayoutFlat><Route {...props}>{children}</Route></LayoutFlat>
     );
 };
 
 const mapStateToProps = (state) => ({
-    user: state.user
+    admin: state.user.currentUser.admin,
+    token: state.user.token
 });
 
 export default connect(mapStateToProps)(AdminRoute);

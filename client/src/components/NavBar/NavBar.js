@@ -7,35 +7,32 @@ import { GrUserAdmin } from 'react-icons/gr';
 const NavBar = ({ admin }) => {
     const location = useLocation().pathname;
     return (
-        <div className="navbar">
-            <div className="navbar-wrapper">
-                <div className="navbar-logo heading-logo"><span className="heading-logo__first">B</span><span className="heading-logo__second">Z</span></div>
-                <ul className="navbar-list heading-2">
-                    <li className="navbar-list__item">
-                        <BiHomeAlt className="navbar-list__item__icon" />
-                        <span className={location=='/'?'navbar-list__item__nav__active':'navbar-list__item__nav'}><Link to='/' className="no-dec">Home</Link></span>
+        <div className="layout__nav navbar">
+                <ul className="navbar__list heading-2">
+                    <li className="navbar__list__item">
+                        <BiHomeAlt className="navbar__list__item--icon" />
+                        <span className={location=='/'?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/' className="no-dec">Home</Link></span>
                     </li>
-                    <li className="navbar-list__item">
-                        <BiStore className="navbar-list__item__icon" />
-                        <span className={location=='/store'?'navbar-list__item__nav__active':'navbar-list__item__nav'}>Store</span>
+                    <li className="navbar__list__item">
+                        <BiStore className="navbar__list__item--icon" />
+                        <span className={location=='/store'?'navbar__list__item--nav--active':'navbar__list__item--nav'}>Store</span>
                     </li>
-                    <li className="navbar-list__item">
-                        <BiPhotoAlbum className="navbar-list__item__icon" />
-                        <span className={location=='/photos'?'navbar-list__item__nav__active':'navbar-list__item__nav'}>Photos</span>
+                    <li className="navbar__list__item">
+                        <BiPhotoAlbum className="navbar__list__item--icon" />
+                        <span className={location=='/photos'?'navbar__list__item--nav--active':'navbar__list__item--nav'}>Photos</span>
                     </li>
                     {admin && (
-                        <li className="navbar-list__item">
-                            <BiCard className="navbar-list__item__icon" />
-                            <span className={location=='/admin'?'navbar-list__item__nav__active':'navbar-list__item__nav'}><Link to='/admin' className="no-dec">Admin</Link></span>
+                        <li className="navbar__list__item">
+                            <BiCard className="navbar__list__item--icon" />
+                            <span className={location=='/admin'?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/admin' className="no-dec">Admin</Link></span>
                         </li>
                     )
                     }
-                    <li className="navbar-list__item">
-                        <GrUserAdmin className="navbar-list__item__icon" />
-                        <span className="navbar-list__item__nav">Create Event</span>
+                    <li className="navbar__list__item">
+                        <GrUserAdmin className="navbar__list__item--icon" />
+                        <span className="navbar__list__item--nav">Create Event</span>
                     </li>
                 </ul>
-            </div>
         </div>
     )
 }

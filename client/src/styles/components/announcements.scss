@@ -1,0 +1,19 @@
+.announcements {
+    display: flex;
+    flex-direction: column;
+
+
+    &--heading {
+        margin-bottom: 5px;
+    }
+
+    &__list {
+
+        display: flex;
+        flex-direction: column;
+
+        &__item {
+            margin-bottom: 15px;
+        }
+    }
+}

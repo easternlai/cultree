@@ -1,0 +1,63 @@
+.event{
+    &-wrapper{
+        display: flex;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1.5px solid #EFF3F4;
+
+
+    }
+    &-left-icon {
+        background-color: $color-secondary-fog;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        margin-right: 20px;
+        padding: 8px;
+        text-align: center;
+        line-height: 18px;
+        
+        &__initials {
+        font-size: 1.5rem;
+        font-family: 'Assistant', sans-serif;
+        font-weight: 500;
+        color: $color-secondary-red;
+        }
+    }
+    &-dialog {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        &-heading{
+            display: flex;
+            justify-content: space-between;
+        }
+        &__info{
+            text-decoration: none;
+        }
+        &-image{
+            width: 100%;
+            border-radius: 25px;
+            margin-top: 20px;
+            margin-bottom:10px;
+        }
+        &-attendees{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__addbutton{
+                z-index: 50;
+                background-color: $color-secondary-red;
+                color: $color-white;
+                padding: 8px 15px;
+                font-size: 15px;
+                font-weight: 500;
+                letter-spacing: 2px;
+                border-radius: 50px;
+                cursor: pointer;
+         
+            }
+        }
+    }
+}

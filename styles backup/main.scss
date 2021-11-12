@@ -9,16 +9,12 @@
 @import './components/header';
 @import './components/eventsFeed';
 @import './components/navBar';
-@import './components/announcements';
+@import './components/sideBar';
 @import './components/eventDialog';
 @import './components/settingsLogout';
-@import './components/logo';
-@import './components/buttons';
 
 //layouts
-@import './layout/layoutwsidebar';
-@import './layout/layoutFlat';
-@import './layout/layout';
+@import './layout/body';
 
 //Page
 @import './pages/homePage';

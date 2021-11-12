@@ -1,83 +1,93 @@
-.eventpage {
-  &-center {
-    flex: 2.7;
-    margin: 0 20px;
+.event-page {
+  &__center {
     display: flex;
-    min-width: 600px;
     flex-direction: column;
 
-    &-back {
+    &__back {
       display: flex;
-      text-decoration: none;
-      border-bottom: 1.5px solid #eff3f4;
-      text-decoration: none;
-
       padding-bottom: 10px;
 
-      &__icon {
-        font-size: 2.5rem;
+      &--icon {
+        font-size: 3.2rem;
       }
-      &__text {
-        font-size: 2rem;
+
+      &--text {
         padding-left: 5px;
         text-decoration: none;
       }
     }
-    &-content {
+
+    &__content {
       display: flex;
       flex-direction: column;
-      padding-top: 20px;
 
-      &__title {
+      &--title {
         margin-bottom: 10px;
-        font-size: 2.5rem;
-        font-weight: bold;
       }
 
-      &__image {
+      &--caption {
+        margin-bottom: 10px;
+      }
+
+      &--image {
         width: 100%;
-        border-radius: 25px;
+        border-radius: $radius-items;
         margin-bottom: 10px;
       }
 
-      &__caption {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-      }
-      &-attend{
+      &__comment-form {
+        margin-bottom: 15px;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        &__count{
 
+        &__input {
+          border: none;
+          width: 80%;
+
+          &:focus {
+            outline: none;
+          }
         }
-        &__button{
-            z-index: 50;
-            background-color: $color-secondary-red;
-            color: $color-white;
-            padding: 8px 15px;
-            font-size: 15px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            border-radius: 50px;
-            cursor: pointer;
 
+        &__button {
+          background-color: $color-secondary-sea;
+          color: $color-white;
+          margin-left: 20px;
+          padding: 10px 15px;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: 2px;
+          border-radius: $radius-items;
+          cursor: pointer;
+          border: none;
+          opacity: 85%;
+        }
+      }
+
+      &__comments {
+        &__box {
+          margin-top: 5px;
+          display: flex;
+          flex-direction: column;
+          &--name {
+              padding-right: 8px;
+          }
         }
       }
     }
   }
-  &-sidebar {
-    flex: 4;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    border-left: 1.5px solid #eff3f4;
-    display: flex;
-    flex-direction: column;
 
-    &-body{
-        margin-top: 80px;
-        margin-left: 20px;
-    }
+  &__sidebar {
+      display: flex;
+      flex-direction: column;
+
+      &__body {
+          margin-top: 10px;
+
+          &__attendees {
+            padding-top: 15px;
+            }
+      }
+
   }
 }

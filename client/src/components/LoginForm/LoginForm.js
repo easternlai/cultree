@@ -9,7 +9,6 @@ const LoginForm = ({loginStart, fetching}) => {
     event.preventDefault();
     loginStart(usernameOrEmail, password);
   };
-  console.log(fetching);
   return (
     <form onSubmit={handleSubmit} className="app__form">
       <input

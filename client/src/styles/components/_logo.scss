@@ -1,0 +1,11 @@
+.logo{
+    font-weight: bold;
+    font-family: 'Otomanopee One', sans-serif;
+    align-self: center;
+    &-1{
+        color: $color-secondary-red;
+    }
+    &-2{
+        color: $color-secondary-sea;
+    }
+}

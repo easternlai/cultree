@@ -1,0 +1,16 @@
+.layout {
+    display: grid;
+    grid-template-columns: 3fr 5fr 3fr;
+
+    &__header {
+        grid-column: 1/ span 3;
+    }
+
+    &__nav {
+        grid-column: 1;
+        margin-left: $outside-space;
+        height: 100vh;
+        position: sticky;
+        top: 60px;
+    }
+}

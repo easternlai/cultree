@@ -18,7 +18,7 @@ body {
     }
 }
 
-.heading-0 {
+.heading-super {
   font-size: 4rem;
 }
 
@@ -36,12 +36,6 @@ body {
   .heading-2 {
     font-size: 2rem;
     color: $color-black;
-  }
-
-  .heading-2__bold {
-    font-size: 2rem;
-    color: $color-black;
-    font-weight: bold;
   }
   
   .heading-3 {

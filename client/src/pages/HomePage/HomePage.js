@@ -1,17 +1,13 @@
 import React, {Fragment} from 'react';
 import EventsFeed from '../../components/EventsFeed/EventsFeed';
 import NavBar from '../../components/NavBar/NavBar';
-import SideBar from '../../components/SideBar/SideBar';
+import Announcements from '../../components/Announcements/Announcements';
 
 const HomePage = () => {
     return (
         <Fragment>
-            <body className="body-container">
-                <NavBar />
                 <EventsFeed />
-                <SideBar />
-                
-            </body>
+                <Announcements />
         </Fragment>
     )
 }

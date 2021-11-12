@@ -8,15 +8,11 @@ import SettingsLogout from '../../components/SettingsLogout/SettingsLogout';
 const AdminPortal = () => {
     return (
 
-        <div className="body-container">
-            <NavBar />
-            <div className="admin">
-                <SettingsLogout/>
+        <div className="layout-flat__body">
                 <div className="heading-1__bold">Admin Portal</div>
-                <div className="admin-options">
-                    <div className="admin-options__item"><Link to="/admin/createuser" className="no-dec">+ Create User</Link></div>
+                <div className="">
+                    <div className=""><Link to="/admin/createuser" className="no-dec">+ Create User</Link></div>
                 </div>
-            </div>
         </div>
     )
 }

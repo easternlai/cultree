@@ -1,31 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { signout } from '../../redux/user/userActions';
+import Logo from '../Logo/Logo';
+import SettingsLogout from '../SettingsLogout/SettingsLogout';
 
-const Header = ({currentUser, signout}) => {
+const Header = () => {
 
     return (
-        <div className="header-container">
-            <div className="header-left">
-                <div className="logo heading-1">
-                    beZoo
-                </div>
-            </div>
-            <div className="header-right" onClick={signout}>
-                <div className="user-icon">
-                    <span className="user-icon__initials">{'T'}</span>
-                </div>
-            </div>
+        <div className="header layout__header">
+            <Logo />
+            <input className="header__search-box" placeholder="Search for activity..."/>
+            <SettingsLogout />
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
-});
 
-const mapDispatchtoProps = (dispatch) => ({
-    signout: () => dispatch(signout()),
-})
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Header);
+export default Header;
