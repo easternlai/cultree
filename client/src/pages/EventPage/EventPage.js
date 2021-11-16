@@ -29,7 +29,6 @@ const EventPage = ({ token, currentUser }) => {
       }
     })();
   });
-  console.log(state);
 
   const handleAttendeeUpdate = (event) => {
     event.preventDefault();
@@ -51,6 +50,8 @@ const EventPage = ({ token, currentUser }) => {
     dispatch({ type: "CREATE_COMMENT", payload: { comment } });
     setMessage("");
   };
+
+  console.log(state);
 
   return (
     <Fragment>
@@ -130,7 +131,9 @@ const EventPage = ({ token, currentUser }) => {
               <span>Organized by a </span>
               <span className="bold">{state.data.organizer.fullName}</span>
             </div>
-            <div className="heading-2__bold event-page__sidebar__body__attendees">Attendees</div>
+            <div className="heading-2__bold event-page__sidebar__body__attendees">
+              Attendees
+            </div>
             {state.data.participantsList.map((participant) => (
               <div>{participant.fullName}</div>
             ))}

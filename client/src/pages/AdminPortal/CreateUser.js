@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import NavBar from '../../components/NavBar/NavBar';
-import SettingsLogout from '../../components/SettingsLogout/SettingsLogout';
 import { createUser } from '../../services/adminService';
 
 const CreateUser = ({token}) => {
@@ -25,102 +22,100 @@ const CreateUser = ({token}) => {
         setDepartment('');
         setStartDate('');
         setAdmin(false);
+ 
     }
 
     return (
 
-        <div className="body-container">
-            <NavBar />
-            <div className="admin">
-                <SettingsLogout />
-                <div className="heading-1__bold"><span>Admin Portal <span className="heading-super">></span> Create User</span></div>
+
+            <div className="create-user">
+                <div className="heading-2__bold"><span>Admin Portal</span ><span className="heading-1__bold"> >> </span><span>Create User</span></div>
 
 
-                <form onSubmit={handleSubmit} className="admin-form">
-                    <div className="admin-form__item">
-                        <label for="fullName" className="admin-form__item__label">Full Name</label>
+                <form onSubmit={handleSubmit} className="create-user__form">
+                    <div className="create-user__form__item">
+                        <label for="fullName" className="create-user__form__item--label">Full Name</label>
                         <input
                             type="text"
                             maxLength="30"
                             name="fullName"
-                            className="admin-form__item__input"
+                            className="create-user__form__item--input"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
                         />
                     </div>
-                    <div className="admin-form__item">
-                        <label for="email" className="admin-form__item__label">Email Address</label>
+                    <div className="create-user__form__item">
+                        <label for="email" className="create-user__form__item--label">Email Address</label>
                         <input
                             type="text"
                             maxLength="30"
                             name="email"
                             value={email}
-                            className="admin-form__item__input"
+                            className="create-user__form__item--input"
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
-                    <div className="admin-form__item">
-                        <label for="username" className="admin-form__item__label">Username</label>
+                    <div className="create-user__form__item">
+                        <label for="username" className="create-user__form__item--label">Username</label>
                         <input
                             type="text"
                             maxLength="30"
                             name="username"
                             value={username}
-                            className="admin-form__item__input"
+                            className="create-user__form__item--input"
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </div>
-                    <div className="admin-form__item">
-                        <label for="department" className="admin-form__item__label">Department</label>
+                    <div className="create-user__form__item">
+                        <label for="department" className="create-user__form__item--label">Department</label>
                         <input
                             type="text"
                             maxLength="30"
                             name="department"
                             value={department}
-                            className="admin-form__item__input"
+                            className="create-user__form__item--input"
                             onChange={(e) => setDepartment(e.target.value)}
                         />
                     </div>
-                    <div className="admin-form__item">
-                        <label for="startDate" className="admin-form__item__label">Start Date</label>
+                    <div className="create-user__form__item">
+                        <label for="startDate" className="create-user__form__item--label">Start Date</label>
                         <input
                             type="text"
                             maxLength="30"
                             name="startDate"
                             value={startDate}
-                            className="admin-form__item__input"
+                            className="create-user__form__item--input"
                             onChange={(e) => setStartDate(e.target.value)}
                         />
                     </div>
-                    <div className="admin-form__item">
-                        <label for="password" className="admin-form__item__label">Password</label>
+                    <div className="create-user__form__item">
+                        <label for="password" className="create-user__form__item--label">Password</label>
                         <input
                             type="password"
                             maxLength="30"
                             name="password"
                             value={password}
-                            className="admin-form__item__input"
+                            className="create-user__form__item--input"
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <div className="admin-form__item">
-                        <label for="admin" className="admin-form__item__label">Administrator</label>
+                    <div className="create-user__form__item">
+                        <label for="admin" className="create-user__form__item--label">Administrator</label>
                         <input
                             type="checkbox"
                             maxLength="30"
                             name="admin"
-                            className="admin-form__item__checkbox"
+                            className="create-user__form__item--check-box"
                             value={admin}
                             onChange={(e) =>setAdmin(!admin)}
                         />
                     </div>
 
 
-                    <input type="submit" className="admin-form__button" value="Add User" />
+                    <input type="submit" className="create-user__form--button" value="Add User" />
 
                 </form>
             </div>
-        </div>
     )
 }
 

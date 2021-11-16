@@ -1,0 +1,95 @@
+.create-event {
+  display: flex;
+  flex-direction: column;
+
+  &__search {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    margin-bottom: 40px;
+
+    &__field {
+      display: flex;
+      width: 300px;
+      justify-content: space-around;
+      padding: 20px 10px;
+      border-radius: $radius-items;
+      background-color: $color-grey;
+      border: 1px solid $color-black;
+
+      &--input {
+        font-size: 1.5rem;
+        height: 30px;
+        padding-left: 10px;
+        border-radius: $radius-items;
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &--submit {
+        text-align: center;
+        padding: 5px;
+        font-size: 1.3rem;
+        background-color: $color-secondary-red;
+        color: $color-white;
+        border-radius: $radius-items;
+        border: none;
+        width: 60px;
+        cursor: pointer;
+        opacity: 90px;
+      }
+    }
+  }
+
+  &__yelp {
+    margin-bottom: 20px;
+
+    &__item{
+      display: flex;
+      flex-direction: column;
+
+      &--img{
+        width: 300px;
+        border-radius: $radius-items;
+      }
+      &--select{
+        background-color: $color-secondary-red;
+        width: 80px;
+        text-align: center;
+        color: $color-white;
+        border-radius: $radius-items;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__form {
+    width: 300px;
+    &--input {
+      width: 100%;
+      padding: 8px;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-radius: $radius-items;
+      border: 1px solid $color-black;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    &--submit {
+      width: 100%;
+
+      padding: 5px 10px;
+      font-size: 2rem;
+      background-color: $color-secondary-red;
+      color: $color-white;
+      border-radius: $radius-items;
+      border: none;
+    }
+  }
+}

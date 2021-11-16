@@ -9,7 +9,7 @@ const User = require('../models/User');
 const { attendEventSocket, sendNewEvent } = require('../handlers/socketHandler');
 
 module.exports.createEvent = async (req, res, next) => {
-    const { location, date, type, caption, name, time } = req.body;
+    const { location, date, type, caption, name, time, imageLink } = req.body;
     let { image } = req.body;
     const userId = req.user.id;
 
@@ -38,13 +38,14 @@ module.exports.createEvent = async (req, res, next) => {
             image = s3Response.Location;
         }
 
-        event = new Event({ location, name, date, time, type, organizer: ObjectId(userId), tenantId: ObjectId(user.tenantId), caption, image });
+        event = new Event({ location, name, date, time, type, organizer: ObjectId(userId), tenantId: ObjectId(user.tenantId), caption, image: image || imageLink });
         const participantList = new ParticipantList({
             event: event._id
         });
 
         await event.save();
         await participantList.save();
+        console.log(event);
         res.send({ ...event.toObject(), organizer: { fullName: user.fullName, username: user.username, email: user.email } });
 
         //Socket Handler
@@ -107,7 +108,6 @@ module.exports.retrieveEvents = async (req, res, next) => {
             },
             {
                 $unset: [
-                    'organizer._id',
                     'organizer.tenantId',
                     'organizer.password',
                     'organizer.admin',
@@ -149,7 +149,6 @@ module.exports.getEvent = async (req, res, next) => {
 
             {
                 $unset: [
-                    'organizer._id',
                     'organizer.tenantId',
                     'organizer.password',
                     'organizer.admin',

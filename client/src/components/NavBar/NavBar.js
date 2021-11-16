@@ -30,7 +30,7 @@ const NavBar = ({ admin }) => {
                     }
                     <li className="navbar__list__item">
                         <GrUserAdmin className="navbar__list__item--icon" />
-                        <span className="navbar__list__item--nav">Create Event</span>
+                        <span className="navbar__list__item--nav"><Link to='/createevent' className="no-dec">Create Event</Link></span>
                     </li>
                 </ul>
         </div>

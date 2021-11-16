@@ -13,6 +13,7 @@ import EventPage from "./pages/EventPage/EventPage";
 import AdminRoute from "./components/Routing/AdminRoute";
 import AdminPortal from "./pages/AdminPortal/AdminPortal";
 import CreateUser from "./pages/AdminPortal/CreateUser";
+import CreateEventPage from "./pages/CreateEventPage/CreateEventPage";
 
 export function App({ loginStart, connectSocket, currentUser, authToken }) {
   const localToken = localStorage.getItem("token");
@@ -45,6 +46,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <ProtectedRoute path="/event/:eventId" component={EventPage} />
           <AdminRoute exact path="/admin" component={AdminPortal} />
           <AdminRoute exact path="/admin/createuser" component={CreateUser} />
+          <ProtectedRoute exact path="/createevent" component={CreateEventPage} />
         </Switch>
       </Fragment>
     );

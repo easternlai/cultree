@@ -16,6 +16,7 @@ export const INITIAL_STATE = {
       email: null,
       fullName: null,
       username: null,
+      _id: null,
     },
     image: null,
   },
@@ -43,6 +44,7 @@ export const EventPageReducer = (state, action) => {
             email: eventData.organizer.email,
             fullName: eventData.organizer.fullName,
             username: eventData.organizer.username,
+            _id: eventData.organizer._id
           },
           comments: [...eventData.comments],
         },

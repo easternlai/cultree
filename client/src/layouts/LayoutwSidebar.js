@@ -6,8 +6,8 @@ const LayoutwSidebar = ({ children }) => {
   return (
     <div className="layout">
       <Header />
-        <NavBar />
-        {children}
+      <NavBar />
+      {children}
     </div>
   );
 };

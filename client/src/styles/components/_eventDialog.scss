@@ -23,6 +23,9 @@
     &__dialog {
         display: flex;
         flex-direction: column;
+        min-width:500px;
+        width:100%;
+    
         
         &--date {
 
