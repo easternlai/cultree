@@ -13,6 +13,7 @@ const EventsFeed = ({
   useEffect(() => {
     fetchFeedEventsStart(user.token);
   }, [fetchFeedEventsStart]);
+
   return (
     <div className="feed layout-w-sidebar__center">
       <div className="feed-sort heading-3">

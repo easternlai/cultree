@@ -5,7 +5,7 @@ APP WIDE
 - create sortable events (past, all, upcoming)
 - create Surveys
 - Create Bookmarks
-- Create ability to delete
+- Create ability to delete event, comments, user
 - Create ability to change password
 - create ability to post avatar
 - Testing

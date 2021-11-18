@@ -7,9 +7,11 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { EventPageReducer } from "./eventPageReducer";
 import { attendEvent, createComment } from "../../services/eventServices";
-import SettingsLogout from "../../components/SettingsLogout/SettingsLogout";
 import moment from "moment";
 import AttendButton from "../../components/Buttons/AttendButton";
+import EventPageOptions from "../../components/EventPageOptions/EventPageOptions";
+import CommentOptions from '../../components/CommentOptions/CommentOptions';
+import { BiChevronsUp } from "react-icons/bi";
 
 const EventPage = ({ token, currentUser }) => {
   const { eventId } = useParams();
@@ -46,11 +48,9 @@ const EventPage = ({ token, currentUser }) => {
   const handleComment = async (event) => {
     event.preventDefault();
     const comment = await createComment(eventId, token, message);
-    console.log(comment);
     dispatch({ type: "CREATE_COMMENT", payload: { comment } });
     setMessage("");
   };
-
   console.log(state);
 
   return (
@@ -62,8 +62,9 @@ const EventPage = ({ token, currentUser }) => {
         </Link>
         {!fetching && (
           <div className="event-page__center__content">
-            <div className="event-page__center__content--title heading-3__bold">
-              {state.data.name}
+            <div className="event-page__center__content__heading">
+              <div className="heading-3__bold">{state.data.name}</div>
+              <EventPageOptions token={state.data.organizer._id==currentUser._id?token: false} eventId={state.data.id}/>
             </div>
             <div className="event-page__center__content--caption heading-4">
               {state.data.caption}
@@ -93,11 +94,12 @@ const EventPage = ({ token, currentUser }) => {
             <div className="event-page__center__content__comments">
               {state.data.comments.map((comment) => (
                 <div className="event-page__center__content__comments__box">
-                  <div>
-                    <span className="heading-3__bold event-page__center__content__comments__box--name">
+                  <div className="event-page__center__content__comments__box__heading">
+                    <span className="heading-3__bold event-page__center__content__comments__box__heading--name">
                       {comment.author.fullName}
                     </span>
-                    <span className="heading-4">{comment.message}</span>
+                    <span className="heading-3 event-page__center__content__comments__box__heading--comment">{comment.message}</span>
+                    <CommentOptions commentId={comment._id} token={comment.author._id==currentUser._id?token:false} dispatch={dispatch}/>
                   </div>
 
                   <div className="heading-5">

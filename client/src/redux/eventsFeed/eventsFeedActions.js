@@ -15,4 +15,9 @@ export const fetchFeedEventsStart = (authToken) => async (dispatch) => {
 export const addEvent = (event) => ({
     type: eventsFeedTypes.ADD_EVENT,
     payload: event,
-})
+});
+
+export const deleteEvent = (eventId) =>({
+    type: eventsFeedTypes.DELETE_EVENT,
+    payload: eventId,
+});

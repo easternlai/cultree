@@ -13,10 +13,21 @@ export const createEvent = async(token, type, name, location, date, time, captio
       data: {token, type, name, location, date, time, caption, imageLink}
     });
 
-    console.log(response.data);
+    console.log({message:'event created'});
 
   } catch (err) {
     
+  }
+}
+
+export const deleteEvent = async ( eventId, token) => {
+  try {
+    const response = await axios(apiUrl+`/api/event/${eventId}`, {
+      method: 'DELETE',
+      headers: {token}
+    });
+  } catch (err) {
+    throw new Error({err: err.response.data});
   }
 }
 
@@ -57,6 +68,19 @@ export const createComment = async (eventId, token, message) => {
     console.log(err.response.data);
   }
 };
+
+export const deleteComment = async (commentId, token) => {
+
+  try {
+    const response = await axios(apiUrl + `/api/comment/${commentId}`, {
+      method: 'DELETE',
+      headers: {token}
+    });
+  } catch (err) {
+    console.log(err.response);
+  }
+}
+
 
 export const yelpSearch = async (search) => {
 

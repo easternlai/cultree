@@ -46,7 +46,7 @@ const EventDialog = ({
             {eventData.name}
           </div>
           <div className="event__dialog__heading--type heading-4__bold">
-            Lunch
+            {eventData.type}
           </div>
         </div>
         <Link to={`/event/${eventId}`} className="event__dialog__info no-dec">

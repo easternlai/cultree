@@ -32,13 +32,11 @@ const CreateEventPage = ({token}) => {
     event.preventDefault();
     (async function () {
       const allBusinesses = await yelpSearch(search);
-      console.log(allBusinesses);
+      if(allBusinesses){
       setBusinesses(allBusinesses.slice(0, 1));
-      console.log(businesses);
+      }
     })();
   };
-
-  console.log(venue, token);
 
   return (
     <div className="layout-flat__body create-event">

@@ -12,9 +12,10 @@ const eventLimiter = rateLimit({
 });
 
 const {requireAuth} = require('../middleware/auth');
-const { createEvent, retrieveEvents, attendEvent, getEvent } = require('../controllers/eventController');
+const { createEvent, deleteEvent, retrieveEvents, attendEvent, getEvent } = require('../controllers/eventController');
 
 eventRouter.post('/', eventLimiter, requireAuth, upload, createEvent);
+eventRouter.delete('/:eventId', requireAuth, deleteEvent);
 eventRouter.get('/feed', requireAuth, retrieveEvents);
 eventRouter.post('/:eventId/attend', requireAuth, attendEvent);
 eventRouter.get('/:eventId', requireAuth,getEvent);

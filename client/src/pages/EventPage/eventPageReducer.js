@@ -4,7 +4,6 @@ export const INITIAL_STATE = {
   id: null,
   fetching: true,
   error: false,
-  comments: [],
   data: {
     participantsList: [],
     caption: null,
@@ -12,6 +11,7 @@ export const INITIAL_STATE = {
     time: null,
     location: null,
     name: null,
+    comments: [],
     organizer: {
       email: null,
       fullName: null,
@@ -44,7 +44,7 @@ export const EventPageReducer = (state, action) => {
             email: eventData.organizer.email,
             fullName: eventData.organizer.fullName,
             username: eventData.organizer.username,
-            _id: eventData.organizer._id
+            _id: eventData.organizer._id,
           },
           comments: [...eventData.comments],
         },
@@ -73,14 +73,29 @@ export const EventPageReducer = (state, action) => {
     }
 
     case "CREATE_COMMENT": {
-        console.log(action.payload);
-        return {
-            ...state,
-            data: {
-                ...state.data,
-                comments: [...state.data.comments, action.payload.comment]
-            }
-        }
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          comments: [...state.data.comments, action.payload.comment],
+        },
+      };
+    }
+
+    case "DELETE_COMMENT": {
+  
+      const comments = state.data.comments;
+      const findIndex = comments.findIndex(
+        (comment) => comment._id == action.payload.commentId
+      );
+        console.log(findIndex);
+      if (findIndex !== -1) {
+        comments.splice(findIndex, 1);
+      }
+      return {
+        ...state,
+        data: { ...state.data, comments: [...comments] },
+      };
     }
 
     default: {

@@ -6,7 +6,7 @@ const ParticipantList = require('../models/ParticipantList');
 const Comment = require('../models/Comment');
 const User = require('../models/User');
 
-const { attendEventSocket, sendNewEvent } = require('../handlers/socketHandler');
+const { sendNewEventSocket, deleteEventSocket } = require('../handlers/socketHandler');
 
 module.exports.createEvent = async (req, res, next) => {
     const { location, date, type, caption, name, time, imageLink } = req.body;
@@ -46,7 +46,7 @@ module.exports.createEvent = async (req, res, next) => {
         await event.save();
         await participantList.save();
         console.log(event);
-        res.send({ ...event.toObject(), organizer: { fullName: user.fullName, username: user.username, email: user.email } });
+        res.send({ ...event.toObject(), participantsList: [], organizer: { fullName: user.fullName, username: user.username, email: user.email } });
 
         //Socket Handler
         const receivers = await User.aggregate([
@@ -61,15 +61,60 @@ module.exports.createEvent = async (req, res, next) => {
                 }
             }
         ]);
-
+        console.log(receivers);
         receivers.map((receiver) => {
-            sendNewEvent(req, { ...event.toObject(), participantsList: [], organizer: { fullName: user.fullName, username: user.username, email: user.email } }, receiver)
+            sendNewEventSocket(req, { ...event.toObject(), participantsList: [], organizer: { fullName: user.fullName, username: user.username, email: user.email } }, receiver)
         });
 
     } catch (err) {
         next(err);
     }
 }
+
+module.exports.deleteEvent = async(req, res, next) => {
+    const {eventId} = req.params;
+    const userId = req.user.id;
+
+    try {
+
+        const event = await Event.findOne({_id: eventId, organizer: userId});
+
+        if(!event){
+            res.status(404).send({error: 'Could not find an event associated with this user.'});
+        };
+
+        const eventDelete = await Event.deleteOne({
+            _id: eventId,
+        });
+
+        if (!eventDelete.deletedCount){
+            return res.status(500).send({error: "Could not delete this event."});
+        }
+
+        res.status(204).send();
+
+        const receivers = await User.aggregate([
+            {
+                $match: {
+                    tenantId: user.tenantId
+                },
+            },
+            {
+                $project: {
+                    _id: true
+                }
+            }
+        ]);
+
+        receivers.map((receiver) => {
+            deleteEventSocket(req,{eventId}, receiver);
+        });
+        
+    } catch (err) {
+        next(err);
+    }
+}
+
 
 module.exports.retrieveEvents = async (req, res, next) => {
     const userId = req.user.id;
@@ -83,6 +128,9 @@ module.exports.retrieveEvents = async (req, res, next) => {
         const events = await Event.aggregate([
             {
                 $match: { tenantId: user.tenantId }
+            },
+            {
+                $sort: {date: 1}
             },
             {
                 $lookup: {
@@ -215,7 +263,8 @@ module.exports.getEvent = async (req, res, next) => {
                 $addFields: {
                     author: {
                         email: '$users.email',
-                        fullName: '$users.fullName'
+                        fullName: '$users.fullName',
+                        _id: '$users._id'
                     }
                 }
             }

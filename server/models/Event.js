@@ -23,7 +23,17 @@ const EventSchema = new Schema({
   image: String,
 });
 
-//pre delete, delete comment and participant list
+EventSchema.pre('deleteOne', async function(next){
+  const eventId = this.getQuery()['_id'];
+  console.log("this:", this);
+  try {
+    await mongoose.model('Comment').deleteMany({event: eventId});
+    await mongoose.model('ParticipantsList').deleteOne({event: eventId});
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 const eventModel = mongoose.model('events', EventSchema);
 

@@ -20,9 +20,12 @@
     &__content {
       display: flex;
       flex-direction: column;
-      width:100%;
+      width: 100%;
 
-      &--title {
+      &__heading {
+        display: flex;
+        justify-content: space-between;
+
         margin-bottom: 10px;
       }
 
@@ -51,7 +54,7 @@
         }
 
         &__button {
-          background-color: $color-secondary-sea;
+          background-color: $color-secondary-red;
           color: $color-white;
           margin-left: 20px;
           padding: 10px 15px;
@@ -70,8 +73,19 @@
           margin-top: 5px;
           display: flex;
           flex-direction: column;
-          &--name {
+          &__heading {
+            
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            &--name {
               padding-right: 8px;
+              
+            }
+            &--comment{
+              flex:4;
+              
+            }
           }
         }
       }
@@ -79,16 +93,15 @@
   }
 
   &__sidebar {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-      &__body {
-          margin-top: 10px;
+    &__body {
+      margin-top: 10px;
 
-          &__attendees {
-            padding-top: 15px;
-            }
+      &__attendees {
+        padding-top: 15px;
       }
-
+    }
   }
 }
