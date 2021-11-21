@@ -29,6 +29,7 @@ const EventsFeed = ({
             <Fragment>
               <EventDialog
                 eventData={event}
+                participantsListCount={event.participantsList.length}
                 eventId={event._id}
                 key={idx}
                 socket={socket}

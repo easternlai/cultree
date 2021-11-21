@@ -13,6 +13,11 @@ const CompanySchema = new Schema({
   industry: {
     type: String,
   },
+  groups: [{ groupName: { type: String } }],
+  created: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Company = mongoose.model("Company", CompanySchema);

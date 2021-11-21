@@ -54,6 +54,34 @@ const eventsFeedReducer = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case eventsFeedTypes.ATTEND_EVENT: {
+            const {eventId, userId} = action.payload;
+            const events = state.events;
+            const eventIndex = events.findIndex(event => event._id == eventId);
+            
+            
+            if(eventIndex != -1){
+                let participantsList = events[eventIndex].participantsList;
+                //find out if user is current attendee
+                const currentAttendee = !!participantsList.find((participant) => participant.attendee==userId);
+            
+                if(currentAttendee) {
+                    
+                    events[eventIndex].participantsList = participantsList.filter((participant => participant.attendee !== userId));
+
+                }else{
+                    events[eventIndex].participantsList.push({attendee: userId});
+
+                }
+            }
+            return {
+                ...state,
+                events: [...events],
+            }
+
+
+        }
+
         default: {
             return state;
         }

@@ -2,19 +2,19 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Company = require("../models/Company");
 const User = require("../models/User");
+const Cart = require('../models/Cart');
 const ObjectId = require('mongoose').Types.ObjectId;
 
 const {
   validateFullName,
   validateEmail,
-  validateUsername,
   validatePassword,
   validateCompanyName,
 } = require("../utils/validation");
 
 module.exports.login = async (req, res, next) => {
   const { token } = req.headers;
-  const { usernameOrEmail, password } = req.body || null;
+  const { email, password } = req.body || null;
 
   try {
     if (token) {
@@ -33,17 +33,16 @@ module.exports.login = async (req, res, next) => {
       });
     }
 
-    //if not username or password return error
-    if (!usernameOrEmail || !password) {
+    //if not password return error
+    if (!email || !password) {
       return res
         .status(401)
-        .send({ error: "Please provide both a username/email and password." });
+        .send({ error: "Please provide both a email and password." });
     }
 
     //find user
-    const user = await User.findOne({
-      $or: [{ email: usernameOrEmail }, { username: usernameOrEmail }],
-    });
+    const user = await User.findOne({ email: email },
+    );
 
     //if no user return error
     if (!user) {
@@ -83,7 +82,6 @@ module.exports.registerTenant = async (req, res, next) => {
   const {
     fullName,
     email,
-    username,
     password,
     companyName,
     address,
@@ -91,7 +89,6 @@ module.exports.registerTenant = async (req, res, next) => {
   } = req.body;
   const validateFullNameError = validateFullName(fullName);
   const validateEmailError = validateEmail(email);
-  const validateUsernameError = validateUsername(username);
   const validatePasswordError = validatePassword(password);
   const validateCompanyNameError = validateCompanyName(companyName);
 
@@ -101,9 +98,6 @@ module.exports.registerTenant = async (req, res, next) => {
   if (validateEmailError) {
     return res.status(401).send({ error: validateEmailError });
   }
-  if (validateUsernameError) {
-    return res.status(401).send({ error: validateUsernameError });
-  }
   if (validatePasswordError) {
     return res.status(401).send({ error: validatePasswordError });
   }
@@ -112,13 +106,7 @@ module.exports.registerTenant = async (req, res, next) => {
   }
 
   try {
-    //check if username exist
-    const usernameExist = !!(await User.findOne({ username }));
-    if (usernameExist)
-      return res
-        .status(401)
-        .send({ error: "There is already an account with this username" });
-
+ 
     //check if email exist
     const emailExist = !!(await User.findOne({ email }));
     if (emailExist)
@@ -139,15 +127,20 @@ module.exports.registerTenant = async (req, res, next) => {
     const user = new User({
       fullName,
       email,
-      username,
       password,
-      admin: true,
+      admin: 5,
       tenantId: ObjectId(company._id),
     });
+
+    const cart = new Cart({
+      user: ObjectId(user._id)
+    })
 
     //Save
     company.save();
     user.save();
+    cart.save();
+  
 
     //send with jwt token
     res.send({

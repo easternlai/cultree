@@ -39,7 +39,7 @@ export const attendEvent = async (eventId, token) => {
     });
     return response;
   } catch (err) {
-    throw new Error({ err: err.response.data });
+    console.log({err})
   }
 };
 
@@ -52,8 +52,9 @@ export const getEvent = async (eventId, token) => {
 
     return response.data;
   } catch (err) {
-    console.log(err.response.data);
+    console.log(err);
   }
+  
 };
 
 export const createComment = async (eventId, token, message) => {

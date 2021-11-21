@@ -21,7 +21,7 @@ const NavBar = ({ admin }) => {
                         <BiPhotoAlbum className="navbar__list__item--icon" />
                         <span className={location=='/photos'?'navbar__list__item--nav--active':'navbar__list__item--nav'}>Photos</span>
                     </li>
-                    {admin && (
+                    {admin === 5 && (
                         <li className="navbar__list__item">
                             <BiCard className="navbar__list__item--icon" />
                             <span className={location=='/admin'?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/admin' className="no-dec">Admin</Link></span>

@@ -21,3 +21,8 @@ export const deleteEvent = (eventId) =>({
     type: eventsFeedTypes.DELETE_EVENT,
     payload: eventId,
 });
+
+export const attendEvent = ({eventId, userId}) => ({
+    type: eventsFeedTypes.ATTEND_EVENT,
+    payload: { eventId, userId}
+});

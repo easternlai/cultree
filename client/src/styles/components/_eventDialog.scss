@@ -45,6 +45,9 @@
             border-radius: $radius-items;
             margin-top: 20px;
             margin-bottom:10px;
+            max-height: 400px;
+            object-fit:cover;
+
         }
 
         &__attendees{

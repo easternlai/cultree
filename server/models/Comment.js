@@ -16,7 +16,11 @@ const CommentSchema = new Schema({
     event: {
         type: Schema.ObjectId,
         ref: 'Event'
-    }
+    },
+    created: {
+        type: Date,
+        default: Date.now,
+      },
 });
 
 const commentModel = mongoose.model('Comment', CommentSchema);

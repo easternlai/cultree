@@ -12,14 +12,15 @@ const EventDialog = ({
   token,
   currentUser,
   socket,
+  participantsListCount,
+
 }) => {
   const [state, dispatch] = useReducer(EventDialogReducer, INITIAL_STATE);
-
   useEffect(() => {
     if (eventData) {
       dispatch({ type: "FETCH_EVENT_SUCCESS", payload: { eventData } });
     }
-  }, [eventId, eventData]);
+  }, [eventId, eventData, participantsListCount]);
 
   const handleAttendeeUpdate = async () => {
     dispatch({
@@ -58,7 +59,7 @@ const EventDialog = ({
             </span>
           </div>
         </Link>
-        <img src={eventData.image} className="event__dialog--image" />
+        {eventData.image && <img src={eventData.image} className="event__dialog--image" />}
         <div className="event__dialog__attendees heading-4">
           <div className="event__dialog__attendees--count">
             {state.data.participantsList.length}{" "}

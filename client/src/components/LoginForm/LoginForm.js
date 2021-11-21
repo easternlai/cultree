@@ -3,21 +3,21 @@ import { connect } from "react-redux";
 import { loginStart } from "../../redux/user/userActions";
 
 const LoginForm = ({loginStart, fetching}) => {
-  const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    loginStart(usernameOrEmail, password);
+    loginStart(email, password);
   };
   return (
     <form onSubmit={handleSubmit} className="app__form">
       <input
         type="text"
         maxLength="30"
-        name="username"
-        placeholder="username or email"
+        name="email"
+        placeholder="email"
         className="app__input"
-        onChange={(e) => setUsernameOrEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
@@ -39,8 +39,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loginStart: (usernameOrEmail, password, token) =>
-    dispatch(loginStart(usernameOrEmail, password, token)),
+  loginStart: (email, password, token) =>
+    dispatch(loginStart(email, password, token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

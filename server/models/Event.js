@@ -21,6 +21,10 @@ const EventSchema = new Schema({
 },
   caption: String,
   image: String,
+  created: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 EventSchema.pre('deleteOne', async function(next){

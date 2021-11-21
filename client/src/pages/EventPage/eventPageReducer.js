@@ -15,7 +15,6 @@ export const INITIAL_STATE = {
     organizer: {
       email: null,
       fullName: null,
-      username: null,
       _id: null,
     },
     image: null,
@@ -43,7 +42,6 @@ export const EventPageReducer = (state, action) => {
           organizer: {
             email: eventData.organizer.email,
             fullName: eventData.organizer.fullName,
-            username: eventData.organizer.username,
             _id: eventData.organizer._id,
           },
           comments: [...eventData.comments],
@@ -88,7 +86,6 @@ export const EventPageReducer = (state, action) => {
       const findIndex = comments.findIndex(
         (comment) => comment._id == action.payload.commentId
       );
-        console.log(findIndex);
       if (findIndex !== -1) {
         comments.splice(findIndex, 1);
       }

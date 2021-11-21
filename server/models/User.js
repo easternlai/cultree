@@ -9,15 +9,9 @@ const userSchema = new Schema({
     required: true,
   },
   tenantId: {
-      type: Schema.ObjectId,
-      ref: 'Company',
-      required: true,
-  },
-  username: {
-    type: String,
+    type: Schema.ObjectId,
+    ref: "Company",
     required: true,
-    unique: true,
-    minlength: 3,
   },
   email: {
     type: String,
@@ -27,27 +21,37 @@ const userSchema = new Schema({
   password: {
     type: String,
     minlength: 8,
+    required: true,
   },
-  department: {
+  groups: [{
     type: String,
-  },
+  }],
   startDate: {
     type: String,
   },
   admin: {
-      type: Boolean,
-  }
+    type: Number,
+    default: 0,
+  },
+  balance: {
+    type: Number,
+    default: 0,
+  },
+  created: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 //encrypt token
 
-userSchema.pre('save', async function(next){
-    const user = this;
+userSchema.pre("save", async function (next) {
+  const user = this;
 
-    if(!user.isModified('password')) return next();
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
-    next();
+  if (!user.isModified("password")) return next();
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
+  next();
 });
 
 const User = mongoose.model("User", userSchema);

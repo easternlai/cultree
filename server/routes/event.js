@@ -4,7 +4,7 @@ const multer = require('multer');
 const upload = multer({
     dest: 'temp/',
     limits: { fileSize: 10*1024*1024}
-}).single('file');
+}).single('image');
 const rateLimit = require('express-rate-limit');
 const eventLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
