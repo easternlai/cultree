@@ -1,5 +1,5 @@
 const express = require('express');
-const { createProduct } = require('../controllers/storeController');
+const { createProduct, getProducts } = require('../controllers/storeController');
 const storeRouter = express.Router();
 const multer = require('multer');
 const upload = multer({
@@ -15,5 +15,7 @@ const imageLimiter = rateLimit({
 const {requireAuth} = require('../middleware/auth');
 
 storeRouter.post('/', imageLimiter, requireAuth, upload, createProduct);
+storeRouter.get('/', requireAuth, getProducts);
+
 
 module.exports = storeRouter;

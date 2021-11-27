@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const ObjectId = require("mongoose").Types.ObjectId;
+const Cart = require('../models/Cart');
 
 const {
   validateFullName,
@@ -44,6 +45,7 @@ module.exports.createUser = async (req, res, next) => {
         error:
           "There is already an account associated with this email address.",
       });
+      console.log('test');
 
     const user = new User({
       fullName,
@@ -54,10 +56,15 @@ module.exports.createUser = async (req, res, next) => {
       tenantId: ObjectId(tenantId),
     });
 
+    const cart = new Cart({
+      user: ObjectId(user._id)
+    });
+
     user.save();
+    cart.save();
 
     res.send({ message: `A user account has been created for ${fullName}.` });
   } catch (err) {
-    next(err);
+    return err;
   }
 };

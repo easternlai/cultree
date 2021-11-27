@@ -13,6 +13,9 @@ const ProductSchema = new Schema({
       type: Number,
       default: 0,
   },
+  maxOrder: {
+    type: Number,
+  },
   category: {
       type: String,
   },
@@ -29,6 +32,6 @@ const ProductSchema = new Schema({
   },
 });
 
-const ProductModel = mongoose.model('Item', ProductSchema);
+const ProductModel = mongoose.model('Product', ProductSchema);
 
 module.exports = ProductModel;

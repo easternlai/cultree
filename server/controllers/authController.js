@@ -134,7 +134,7 @@ module.exports.registerTenant = async (req, res, next) => {
 
     const cart = new Cart({
       user: ObjectId(user._id)
-    })
+    });
 
     //Save
     company.save();
