@@ -28,6 +28,7 @@ module.exports.login = async (req, res, next) => {
           email: decodedUser.email,
           admin: decodedUser.admin,
           tenantId: decodedUser.tenantId,
+          balance: decodedUser.balance,
         },
         token
       });
@@ -43,7 +44,6 @@ module.exports.login = async (req, res, next) => {
     //find user
     const user = await User.findOne({ email: email },
     );
-
     //if no user return error
     if (!user) {
       res
@@ -52,7 +52,7 @@ module.exports.login = async (req, res, next) => {
     }
 
     //find out if passwords match through bcrypt
-
+    console.log(user.balance);
     //res send user
     bcrypt.compare(password, user.password, function (err, val) {
       if (err) return next(err);
@@ -67,6 +67,7 @@ module.exports.login = async (req, res, next) => {
           email: user.email,
           admin: user.admin,
           tenantId: user.tenantId,
+          balance: user.balance
         },
         token: jwt.sign({ id: user._id, tenantId: user.tenantId }, process.env.JWT_SECRET, {
           expiresIn: "5h",

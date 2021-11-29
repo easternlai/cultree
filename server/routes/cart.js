@@ -1,9 +1,10 @@
 const express = require('express');
-const { addToCart } = require('../controllers/cartController');
+const { getCart, ModifyCart } = require('../controllers/cartController');
 const cartRouter = express.Router();
 
 const {requireAuth} = require('../middleware/auth');
 
-cartRouter.put('/', requireAuth, addToCart);
+cartRouter.put('/:productId', requireAuth, ModifyCart);
+cartRouter.get('/', requireAuth, getCart);
 
 module.exports = cartRouter;

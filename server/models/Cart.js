@@ -13,7 +13,7 @@ const CartSchema = new Schema({
         ref: "Product",
       },
       quantity: { type: Number },
-      price: { type: Number },
+      orderPrice: { type: Number },
     },
   ],
 });
