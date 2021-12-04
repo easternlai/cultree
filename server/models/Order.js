@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
   user: {
-    type: Schema.Object,
+    type: Schema.ObjectId,
     ref: "User",
     required: true,
   },
@@ -23,6 +23,9 @@ const OrderSchema = new Schema({
   status: {
     type: String,
     default: "pending",
+  },
+  orderNumber: {
+    type: String,
     required: true,
   },
   date: {
@@ -31,6 +34,6 @@ const OrderSchema = new Schema({
   },
 });
 
-const OrderModel = mongoose.model("Order", OrderSchema);
+const OrderModel = mongoose.model('Order', OrderSchema);
 
 module.exports = OrderModel;

@@ -18,6 +18,10 @@ const CompanySchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  currentOrderNumber: {
+    type: Number,
+    default: 10000
+  }
 });
 
 const Company = mongoose.model("Company", CompanySchema);

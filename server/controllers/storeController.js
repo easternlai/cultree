@@ -11,6 +11,7 @@ module.exports.createProduct = async (req, res, next) => {
 
   const userId = req.user.id;
   let image = undefined;
+  console.log(productName)
 
   try {
     const user = await User.findOne({ _id: userId });
