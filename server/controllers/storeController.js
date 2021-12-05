@@ -71,4 +71,3 @@ module.exports.getProducts = async (req, res, next) => {
     next(err);
   }
 };
-
