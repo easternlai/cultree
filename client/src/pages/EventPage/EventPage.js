@@ -5,7 +5,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import { getEvent } from "../../services/eventServices";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { EventPageReducer } from "./eventPageReducer";
+import { EventPageReducer, INITIAL_STATE } from "./eventPageReducer";
 import { attendEvent, createComment } from "../../services/eventServices";
 import moment from "moment";
 import AttendButton from "../../components/Buttons/AttendButton";
@@ -16,7 +16,7 @@ import { BiChevronsUp } from "react-icons/bi";
 const EventPage = ({ token, currentUser }) => {
   const { eventId } = useParams();
 
-  const [state, dispatch] = useReducer(EventPageReducer);
+  const [state, dispatch] = useReducer(EventPageReducer, INITIAL_STATE);
   const [message, setMessage] = useState("");
 
   let eventData = undefined;
@@ -25,12 +25,11 @@ const EventPage = ({ token, currentUser }) => {
 
   useEffect(() => {
     (async function () {
-      if (!state) {
         eventData = await getEvent(eventId, token);
         dispatch({ type: "FETCH_EVENT_SUCCESS", payload: { eventData } });
-      }
+
     })();
-  });
+  }, [getEvent]);
 
   const handleAttendeeUpdate = (event) => {
     event.preventDefault();
@@ -50,8 +49,7 @@ const EventPage = ({ token, currentUser }) => {
     const comment = await createComment(eventId, token, message);
     dispatch({ type: "CREATE_COMMENT", payload: { comment } });
     setMessage("");
-  };
-  console.log(state);
+  }; 
 
   return (
     <Fragment>

@@ -1,0 +1,28 @@
+.create-item {
+    display: flex;
+    flex-direction: column;
+
+    &--field{
+        width: 300px;
+        margin-bottom: 20px;
+        padding: 10px 10px;
+        border-radius: $radius-items;
+        border-width: 1px;
+        &:focus{
+            outline: none;
+        }
+    }
+
+    &--image{
+        margin-bottom: 20px;
+    }
+
+    &--button{
+        background-color: $color-secondary-red;
+        width: 300px;
+        padding: 5px 10px;
+        color: $color-white;
+        text-align: center;
+        border-radius: $radius-items;
+    }
+}

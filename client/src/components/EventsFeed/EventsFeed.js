@@ -18,8 +18,7 @@ const EventsFeed = ({
     <div className="feed layout-w-sidebar__center">
       <div className="feed-sort heading-3">
         <div className="feed-sort--options">Upcoming</div>
-        <div className="feed-sort--options">Bookmarked</div>
-        <div className="feed-sort--options">Surveys</div>
+        <div className="feed-sort--options">Attending</div>
         <div className="feed-sort--options">Past</div>
         <div className="feed-sort--options">All</div>
       </div>

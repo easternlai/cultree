@@ -16,7 +16,7 @@ export const createEvent = async(token, type, name, location, date, time, captio
     console.log({message:'event created'});
 
   } catch (err) {
-    
+    console.log(err);
   }
 }
 

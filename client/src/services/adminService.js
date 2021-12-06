@@ -13,6 +13,6 @@ export const createUser = async (fullName, email,password,startDate,admin, token
         });
         return (res.data);
     } catch (err) {
-        console.log(err.response.data.error);
+        console.log(err);
     }
 }

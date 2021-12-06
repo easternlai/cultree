@@ -1,0 +1,32 @@
+.view-order {
+    &__orders {
+        display: flex;
+        flex-direction: column;
+        
+        &__order {
+            
+            margin-bottom: 20px;
+            width: 800px;
+            border-radius: $radius-items;
+
+            &--heading{
+                background-color: $color-secondary-fog;
+                display:flex;
+                justify-content: space-between;
+                padding:5px 10px;
+                border-top-left-radius: $radius-items;
+                border-top-right-radius: $radius-items;
+            }
+            &__item{
+                display: flex;
+                justify-content: space-between;
+                padding:10px 10px;
+                border-bottom: 1px solid $color-grey;
+                &--image{
+                    width: 200px;
+                    border-radius: $radius-items;
+                }
+            }
+        }
+    }
+}

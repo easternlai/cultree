@@ -4,9 +4,10 @@ import { Route, Redirect, Link } from "react-router-dom";
 import LayoutFlat from "../../layouts/LayoutFlat";
 
 const AdminRoute = ({ children, token, admin, ...props }) => {
-  if (!token && admin) {
+  if (!token && !admin) {
     return <Redirect to="/" />;
   }
+  console.log(admin);
   return (
     <LayoutFlat>
       <Route {...props}>{children}</Route>

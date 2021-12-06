@@ -26,6 +26,7 @@ export const EventPageReducer = (state, action) => {
 
   switch (action.type) {
     case "FETCH_EVENT_SUCCESS": {
+      console.log(eventData);
       return {
         ...state,
         fetching: false,

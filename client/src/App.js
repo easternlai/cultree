@@ -14,6 +14,10 @@ import AdminRoute from "./components/Routing/AdminRoute";
 import AdminPortal from "./pages/AdminPortal/AdminPortal";
 import CreateUser from "./pages/AdminPortal/CreateUser";
 import CreateEventPage from "./pages/CreateEventPage/CreateEventPage";
+import StorePage from "./pages/StorePage/StorePage";
+import ShoppingCartPage from "./pages/ShoppingCartPage/ShoppingCartPage";
+import CreateStoreItemPage from "./pages/CreateStoreItemPage/CreateStoreItemPage";
+import ViewOrdersPage from "./pages/VewOrdersPage/ViewOrdersPage";
 
 export function App({ loginStart, connectSocket, currentUser, authToken }) {
   const localToken = localStorage.getItem("token");
@@ -25,6 +29,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
   useEffect(() => {
     if (localToken) {
       loginStart(null, null, localToken);
+   
     }
     if(authToken){
       connectSocket();
@@ -46,7 +51,11 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <ProtectedRoute path="/event/:eventId" component={EventPage} />
           <AdminRoute exact path="/admin" component={AdminPortal} />
           <AdminRoute exact path="/admin/createuser" component={CreateUser} />
+          <ProtectedRoute exact path="/store" component={StorePage} />
+          <AdminRoute exact path="/store/createitem" component={CreateStoreItemPage} />
           <ProtectedRoute exact path="/createevent" component={CreateEventPage} />
+          <ProtectedRoute exact path="/cart" component={ShoppingCartPage} />
+          <ProtectedRoute exact path="/vieworders" component={ViewOrdersPage} />
         </Switch>
       </Fragment>
     );

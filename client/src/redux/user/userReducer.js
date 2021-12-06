@@ -31,6 +31,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 token: null,
                 fetching: false,
             }
+        
+        case userTypes.UPDATE_BALANCE:
+            console.log(action.payload);
+            return {
+                ...state,
+                currentUser: {...state.currentUser, balance: action.payload}
+            }
         default:
             return state;
     }

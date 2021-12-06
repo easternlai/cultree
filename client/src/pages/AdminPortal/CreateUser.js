@@ -20,7 +20,7 @@ const CreateUser = ({ token }) => {
   };
 
   return (
-    <div className="create-user">
+    <div className="layout-flat__body create-user">
       <div className="heading-2__bold">
         <span>Admin Portal</span>
         <span className="heading-1__bold"> >> </span>

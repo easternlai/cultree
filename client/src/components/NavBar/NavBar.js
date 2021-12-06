@@ -15,7 +15,7 @@ const NavBar = ({ admin }) => {
                     </li>
                     <li className="navbar__list__item">
                         <BiStore className="navbar__list__item--icon" />
-                        <span className={location=='/store'?'navbar__list__item--nav--active':'navbar__list__item--nav'}>Store</span>
+                        <span className={location=='/store'?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/store' className='no-dec'>Store</Link></span>
                     </li>
                     <li className="navbar__list__item">
                         <BiPhotoAlbum className="navbar__list__item--icon" />
@@ -24,13 +24,13 @@ const NavBar = ({ admin }) => {
                     {admin === 5 && (
                         <li className="navbar__list__item">
                             <BiCard className="navbar__list__item--icon" />
-                            <span className={location=='/admin'?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/admin' className="no-dec">Admin</Link></span>
+                            <span className={location.includes('/admin')?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/admin' className="no-dec">Admin</Link></span>
                         </li>
                     )
                     }
                     <li className="navbar__list__item">
                         <GrUserAdmin className="navbar__list__item--icon" />
-                        <span className="navbar__list__item--nav"><Link to='/createevent' className="no-dec">Create Event</Link></span>
+                        <span className={location=='/createevent'?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/createevent' className="no-dec">Create Event</Link></span>
                     </li>
                 </ul>
         </div>

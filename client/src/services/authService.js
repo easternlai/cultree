@@ -10,7 +10,6 @@ export const loginAuthentication = async (email, password, token) => {
             method:'POST',
             ...request
         });
-
         return res.data;
 
     } catch (err) {
