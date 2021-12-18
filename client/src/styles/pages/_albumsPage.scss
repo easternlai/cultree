@@ -1,0 +1,31 @@
+.albums {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-right: 50px;
+      &__blank {
+        background-color: $color-secondary-red;
+        text-align: center;
+        line-height: 100px;
+        &--icon {
+          color: $color-white;
+        }
+      }
+
+      &--image {
+        border-radius: $radius-items;
+        height: 100px;
+        width: 100px;
+      }
+
+      &--name{
+          text-align: center;
+      }
+    }
+  }
+}

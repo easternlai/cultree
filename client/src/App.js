@@ -18,6 +18,8 @@ import StorePage from "./pages/StorePage/StorePage";
 import ShoppingCartPage from "./pages/ShoppingCartPage/ShoppingCartPage";
 import CreateStoreItemPage from "./pages/CreateStoreItemPage/CreateStoreItemPage";
 import ViewOrdersPage from "./pages/VewOrdersPage/ViewOrdersPage";
+import AlbumsPage from "./pages/AlbumsPage/AlbumsPage";
+import CreateAlbumPage from "./pages/CreateAlbumPage/CreateAlbumPage";
 
 export function App({ loginStart, connectSocket, currentUser, authToken }) {
   const localToken = localStorage.getItem("token");
@@ -56,6 +58,8 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <ProtectedRoute exact path="/createevent" component={CreateEventPage} />
           <ProtectedRoute exact path="/cart" component={ShoppingCartPage} />
           <ProtectedRoute exact path="/vieworders" component={ViewOrdersPage} />
+          <ProtectedRoute exact path="/albums" component={AlbumsPage} />
+          <ProtectedRoute exact path="/createalbum" component={CreateAlbumPage} />
         </Switch>
       </Fragment>
     );
