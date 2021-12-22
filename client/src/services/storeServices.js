@@ -16,8 +16,6 @@ export const getProducts = async (token) => {
 };
 
 export const createProduct = async(token, formData) => {
-  console.log(formData);
-  
 
   const config = {
     headers: {

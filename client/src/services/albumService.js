@@ -17,13 +17,18 @@ export const getAlbumsService = async (token) => {
     }
 };
 
-export const createAlbumService = async (token, name) => {
+export const createAlbumService = async (token, formData) => {
+
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data',
+            token
+        }
+    };
     try {
-        const response = await axios(apiUrl + '/api/photoalbums', {
-            method: 'POST',
-            headers: {token},
-            data: { name }
-        });
+        const response = await axios.post(apiUrl + '/api/photoalbums', formData, config);
+
+        console.log(response.data);
 
         return response.data;
         
