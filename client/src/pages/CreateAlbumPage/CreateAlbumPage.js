@@ -1,9 +1,11 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { GrUpload } from "react-icons/gr";
+import {useHistory} from 'react-router-dom';
 import { createAlbumService } from "../../services/albumService";
 
 const CreateAlbumPage = ({ token }) => {
+  const history = useHistory();
   const [albumName, setAlbumName] = useState("");
   const [accessUser, setAccessUser] = useState(false);
 
@@ -36,7 +38,8 @@ const CreateAlbumPage = ({ token }) => {
       }
       const albumId = await createAlbumService(token, formData);
 
-      console.log(albumId);
+      history.push(`/albums`)
+
     }
   };
 

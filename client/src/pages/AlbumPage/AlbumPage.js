@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { RiDeleteBin7Line } from 'react-icons/ri';
 
 import { deleteAlbumService, getAlbumService } from "../../services/albumService";
 
 const AlbumPage = ({ token, user }) => {
+
+  let history = useHistory();
   const [albumName, setAlbumName] = useState();
   const [photos, setPhotos] = useState([]);
   const [adminOnly, setAdminOnly] = useState(true);
@@ -15,16 +17,23 @@ const AlbumPage = ({ token, user }) => {
   useEffect(() => {
     (async function () {
       const albumPhotos = await getAlbumService(token, albumId);
+      if (albumPhotos){
       setAlbumName(albumPhotos.name);
       setPhotos(albumPhotos.photos);
       if (albumPhotos.requiredAccess < 5) {
         setAdminOnly(false);
       }
+    }
     })();
   }, []);
 
-  const handleDelete =() => {
-      deleteAlbumService(token, albumId);
+  const handleDelete = async () => {
+      const {acknowledgement } = await deleteAlbumService(token, albumId);
+      
+      if(acknowledgement){
+        history.push('/albums');
+      
+      }
   }
   return (
     <div className="layout-flat__body album">
@@ -32,7 +41,7 @@ const AlbumPage = ({ token, user }) => {
       {user.admin >= 5 && (
           <div onClick={handleDelete}className="album--delete heading-3">delete album</div>
       )}
-      {photos.length > 0 && (
+      {photos && photos.length > 0 && (
         <div  className="album__photos-container">
           {photos.map((photo) => (
             <div className="album__photos-container__photo">

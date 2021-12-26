@@ -22,10 +22,11 @@
             flex-direction: column;
             padding: 15px 15px 0px 15px;
             border: 1px solid rgba(0,0,8,.05);
-            max-width: 800px;
+
             
             &--image{
                 height: 325px;
+                max-width: 500px;
                 object-fit: cover;
             }
 
