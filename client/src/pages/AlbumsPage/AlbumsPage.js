@@ -12,7 +12,6 @@ const AlbumPage = ({ user }) => {
     })();
   }, []);
 
-  console.log(albums);
 
   return (
     <div className="layout-flat__body albums">
@@ -35,14 +34,14 @@ const AlbumPage = ({ user }) => {
           </div>
         )}
         {albums.map((album) => (
-          <div className="albums__list__item">
+          <Link to={`/albums/${album._id}`} className="albums__list__item no-dec">
             {album.cover ? (
               <img className="albums__list__item--image" src={album.cover} />
             ) : (
               <div className="albums__list__item__blank albums__list__item--image"></div>
             )}
             <div className="albums__list__item--name heading-4">{album.name}</div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

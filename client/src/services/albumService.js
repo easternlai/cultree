@@ -10,7 +10,6 @@ export const getAlbumsService = async (token) => {
             headers: {token},
         });
 
-        console.log(response.data);
         return(response.data);
     } catch (err) {
         console.log(err);
@@ -28,8 +27,35 @@ export const createAlbumService = async (token, formData) => {
     try {
         const response = await axios.post(apiUrl + '/api/photoalbums', formData, config);
 
-        console.log(response.data);
+        return response.data;
+        
+    } catch (err) {
+        console.log(err);
+    }
+}
 
+export const getAlbumService = async (token, albumId) => {
+    try {
+        const response = await axios(apiUrl+`/api/photoalbums/` + albumId, {
+            method: 'GET',
+            headers: {token}
+        });
+
+        return response.data;
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const deleteAlbumService = async (token, albumId) => {
+    try {
+
+        const response = await axios(apiUrl + '/api/photoalbums/' + albumId, {
+            method: 'DELETE',
+            headers: {token}
+        });
+        console.log(response.data);
         return response.data;
         
     } catch (err) {

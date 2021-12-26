@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState, Fragment } from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import { getEvent } from "../../services/eventServices";
 import { IoMdArrowRoundBack } from "react-icons/io";

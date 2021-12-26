@@ -1,9 +1,9 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 import { GrUpload } from "react-icons/gr";
 import { createAlbumService } from "../../services/albumService";
 
-const CreateAlbumPage = ({token}) => {
+const CreateAlbumPage = ({ token }) => {
   const [albumName, setAlbumName] = useState("");
   const [accessUser, setAccessUser] = useState(false);
 
@@ -25,14 +25,19 @@ const CreateAlbumPage = ({token}) => {
     setValidFiles([...filteredArray]);
   }, [selectedFiles]);
 
-  const handleCreateAlbum = () => {
-      console.log(validFiles);
-    const formData = new FormData();
-    formData.append('albumPhotos', validFiles);
-    formData.append('name', albumName);
-    formData.append('accessUser', accessUser);
-    createAlbumService(token, formData);
+  const handleCreateAlbum = async () => {
+    if (unsupportedFiles.length === 0 && albumName) {
+      const formData = new FormData();
+      formData.append("name", albumName);
+      formData.append("accessUser", accessUser);
 
+      for (let i = 0; i < validFiles.length; i++) {
+        formData.append("albumfiles", validFiles[i]);
+      }
+      const albumId = await createAlbumService(token, formData);
+
+      console.log(albumId);
+    }
   };
 
   const dragOver = (e) => {
@@ -120,8 +125,6 @@ const CreateAlbumPage = ({token}) => {
     }
   };
 
-
-
   return (
     <div className="layout-flat__body create-album">
       <div>
@@ -130,7 +133,7 @@ const CreateAlbumPage = ({token}) => {
       <div
         onClick={handleCreateAlbum}
         className={`${
-          unsupportedFiles.length > 0
+          unsupportedFiles.length > 0 || !albumName
             ? "create-album--upload-button__disabled"
             : "create-album--upload-button"
         } heading-2`}
@@ -155,7 +158,10 @@ const CreateAlbumPage = ({token}) => {
           type="checkbox"
           onChange={(e) => setAccessUser(!accessUser)}
         />
-        <label className="heading-3 create-album__access--label" for="required-access" >
+        <label
+          className="heading-3 create-album__access--label"
+          for="required-access"
+        >
           Anyone can upload photos
         </label>
       </div>
@@ -176,6 +182,7 @@ const CreateAlbumPage = ({token}) => {
           <input
             className="drop-zone__upload--input"
             type="file"
+            name="albumfiles"
             multiple
             ref={fileInputRef}
             onChange={filesSelected}
@@ -209,7 +216,7 @@ const CreateAlbumPage = ({token}) => {
 };
 
 const mapStateToProps = (state) => ({
-    token: state.user.token
+  token: state.user.token,
 });
 
 export default connect(mapStateToProps)(CreateAlbumPage);

@@ -1,0 +1,43 @@
+.album {
+
+    &--delete{
+        background-color: $color-secondary-red;
+        color: white;
+        width: 125px;
+        text-align: center;
+        border-radius: $radius-items;
+        cursor: pointer;
+        opacity: 95;
+
+    }
+    
+    &__photos-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        &__photo {
+            margin: 10px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            padding: 15px 15px 0px 15px;
+            border: 1px solid rgba(0,0,8,.05);
+            max-width: 800px;
+            
+            &--image{
+                height: 325px;
+                object-fit: cover;
+            }
+
+            &--trash{
+                font-size: 1.5rem;
+                color: $color-secondary-red;
+                margin-right: 5px;
+                align-self: end;
+                opacity: 50%;
+                z-index: 50;
+                
+            }
+        }
+    }
+}

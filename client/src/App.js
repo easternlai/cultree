@@ -20,6 +20,7 @@ import CreateStoreItemPage from "./pages/CreateStoreItemPage/CreateStoreItemPage
 import ViewOrdersPage from "./pages/VewOrdersPage/ViewOrdersPage";
 import AlbumsPage from "./pages/AlbumsPage/AlbumsPage";
 import CreateAlbumPage from "./pages/CreateAlbumPage/CreateAlbumPage";
+import AlbumPage from "./pages/AlbumPage/AlbumPage";
 
 export function App({ loginStart, connectSocket, currentUser, authToken }) {
   const localToken = localStorage.getItem("token");
@@ -60,6 +61,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <ProtectedRoute exact path="/vieworders" component={ViewOrdersPage} />
           <ProtectedRoute exact path="/albums" component={AlbumsPage} />
           <ProtectedRoute exact path="/createalbum" component={CreateAlbumPage} />
+          <ProtectedRoute path="/albums/:albumId" component={AlbumPage} />
         </Switch>
       </Fragment>
     );

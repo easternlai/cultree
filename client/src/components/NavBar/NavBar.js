@@ -19,7 +19,7 @@ const NavBar = ({ admin }) => {
                     </li>
                     <li className="navbar__list__item">
                         <BiPhotoAlbum className="navbar__list__item--icon" />
-                        <span className={location.includes('/albums')?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/albums' className='no-dec'>Photos</Link></span>
+                        <span className={location.includes('/albums') || location.includes('/createalbum') ?'navbar__list__item--nav--active':'navbar__list__item--nav'}><Link to='/albums' className='no-dec'>Photos</Link></span>
                     </li>
                     {admin === 5 && (
                         <li className="navbar__list__item">
