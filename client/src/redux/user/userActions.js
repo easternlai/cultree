@@ -8,6 +8,7 @@ export const loadUser = ({user, token}) => {
 
 export const signout = () => async dispatch=> {
     await localStorage.removeItem('token');
+    console.log('test1');
     dispatch({type: userTypes.SIGN_OUT});
 }
 
@@ -15,6 +16,7 @@ export const loginStart = (email, password, token) => async (dispatch) => {
     try {
         dispatch({type: userTypes.LOGIN_START});
         const res = await loginAuthentication(email, password, token);
+        console.log(res);
         dispatch(loadUser(res));
     } catch (err) {
         dispatch(signout());

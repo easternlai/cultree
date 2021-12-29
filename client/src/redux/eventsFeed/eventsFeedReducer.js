@@ -44,7 +44,6 @@ const eventsFeedReducer = (state = INITIAL_STATE, action) => {
         case eventsFeedTypes.DELETE_EVENT: {
             const events = state.events;
             const eventIndex = events.findIndex((event)=> event._id == action.payload.eventId);
-            console.log(eventIndex);
             if(eventIndex != -1){
                 events.splice(eventIndex,1);
             }

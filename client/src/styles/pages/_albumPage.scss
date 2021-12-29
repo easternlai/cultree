@@ -1,4 +1,44 @@
 .album {
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__upload-image{
+
+        &--upload-button {
+            width: 100px;
+            background-color: $color-secondary-red;
+            color: white;
+            text-align: center;
+            border-radius: $radius-items;
+            margin-bottom: 20px;
+            padding: 2px 0;
+            cursor: pointer;
+        
+            &__disabled {
+              width: 100px;
+              background-color: $color-secondary-red;
+              color: white;
+              text-align: center;
+              border-radius: $radius-items;
+              margin-bottom: 20px;
+              opacity: 50%;
+            }
+          }
+
+        &--button{
+        border-radius: $radius-items;
+        color: $color-secondary-red;
+        font-weight: bold;
+        border: solid 2px $color-secondary-red;
+        width: 150px;
+        text-align: center;
+        margin-bottom: 50px;
+        cursor: pointer;
+        }
+    }
 
     &--delete{
         background-color: $color-secondary-red;
@@ -7,13 +47,15 @@
         text-align: center;
         border-radius: $radius-items;
         cursor: pointer;
-        opacity: 95;
+        opacity: 75%;
+        padding: 3px;
 
     }
     
     &__photos-container {
         display: flex;
         flex-wrap: wrap;
+        margin-top: 50px;
 
         &__photo {
             margin: 10px;

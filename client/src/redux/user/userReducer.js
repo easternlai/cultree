@@ -24,6 +24,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 fetching: false,
             }
         case userTypes.SIGN_OUT:
+            console.log('test33');
             return {
                 ...state,
                 error: false,

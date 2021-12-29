@@ -27,6 +27,7 @@
     text-align: center;
     border-radius: $radius-items;
     margin-bottom: 20px;
+    padding: 3px;
     cursor: pointer;
 
     &__disabled {
@@ -41,25 +42,4 @@
   }
 }
 
-.drop-zone {
-  &__upload {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    height: 200px;
-    border: 2px dashed $color-secondary-sea;
 
-    &--input {
-      display: none;
-    }
-  }
-
-  &__display {
-    &__status-bar {
-      &--logo {
-      }
-    }
-  }
-}

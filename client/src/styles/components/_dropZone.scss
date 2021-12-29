@@ -1,0 +1,38 @@
+.drop-zone {
+  &__upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 200px;
+    border: 2px dashed $color-secondary-sea;
+
+    &--input {
+      display: none;
+    }
+  }
+
+  &__uploaded-images {
+    display: flex;
+
+    &__tag {
+      margin: 5px 3px 0px 0px;
+      padding: 3px 5px;
+      background-color: rgba(211, 211, 211, 0.863);
+      border-radius: $radius-items;
+
+      &--file-error-message {
+        color: red;
+      }
+
+      &--delete{
+          margin-left: 5px;
+          background-color: $color-secondary-red;
+          color: white;
+          padding: 2px 5px;
+          border-radius: 100px;
+      }
+    }
+  }
+}

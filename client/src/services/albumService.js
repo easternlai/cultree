@@ -55,7 +55,37 @@ export const deleteAlbumService = async (token, albumId) => {
             method: 'DELETE',
             headers: {token}
         });
-        console.log(response.data);
+
+        return response.data;
+        
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const deletePhotoService = async ( token, photoId) => {
+    try {
+        const response = await axios(apiUrl + `/api/photoalbums/photo/${photoId}`, {
+            method: 'DELETE',
+            headers: {token},
+
+           
+        });
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const addPhotosService = async (token, albumId, formData) => {
+    const config = {
+        headers: {
+            'content-type': 'multipart/form-data',
+            token
+        }
+    };
+    try {
+        const response = await axios.put(apiUrl + `/api/photoalbums/photo/${albumId}`, formData, config);
         return response.data;
         
     } catch (err) {
