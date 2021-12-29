@@ -7,13 +7,56 @@
         margin-bottom: 5px;
     }
 
-    &__list {
+    &--edit-announcements{
+        cursor: pointer;
+        border: 3px solid $color-secondary-red;
+        border-radius: $radius-items;
+        margin-right: auto;
+        padding: 0px 10px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
 
+    &__create {
+        margin-bottom: 15px;
+        &--input{
+            padding: 3px 8px;
+            border-radius: $radius-items;
+            width: 85%;
+            border-color: $color-grey;
+            border-width: 2px;
+            &:focus {
+                outline: none;
+            }
+        }
+        &--button{
+            background-color: $color-secondary-red;
+            width: 50px;
+            color: $color-white;
+            text-align: center;
+            border-radius: $radius-items;
+            cursor: pointer;
+
+            &__disabled{
+                background-color: $color-secondary-red;
+                width: 50px;
+                color: $color-white;
+                text-align: center;
+                border-radius: $radius-items;
+                opacity: 40%;
+            }
+        }
+
+    }
+
+    &__list {
+        
         display: flex;
         flex-direction: column;
 
         &__item {
             margin-bottom: 15px;
+            
 
             &--delete{
                 background-color: $color-secondary-red;
@@ -22,6 +65,7 @@
                 text-align: center;
                 border-radius: $radius-items;
                 cursor: pointer;
+                opacity: 80%;
             }
         }
 

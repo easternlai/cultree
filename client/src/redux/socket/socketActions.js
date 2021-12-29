@@ -1,6 +1,6 @@
 import {connect} from '../../services/socketServices';
 import { addEvent, attendEvent, deleteEvent } from '../eventsFeed/eventsFeedActions';
-import { deleteAnnouncement } from '../announcment.js/announcementActions';
+import { createAnnouncementAction, deleteAnnouncementAction } from '../announcment.js/announcementActions';
 import socketTypes from './socketTypes';
 
 export const connectSocket = () => (dispatch) => {
@@ -20,9 +20,12 @@ export const connectSocket = () => (dispatch) => {
         dispatch(attendEvent(data));
     });
 
+    socket.on('newAnnouncement', (data) => {
+        dispatch(createAnnouncementAction(data));
+    })
+
     socket.on('deleteAnnouncement', (data) => {
-        console.log(data);
-        dispatch(deleteAnnouncement(data));
+        dispatch(deleteAnnouncementAction(data));
     });
 
 };

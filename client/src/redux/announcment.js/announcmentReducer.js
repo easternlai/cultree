@@ -24,6 +24,14 @@ const announcementReducer =( state = INITIAL_STATE, action) => {
             }
         }
 
+        case announcementTypes.CREATE_ANNOUNCEMENT:{
+            console.log(action.payload);
+            return {
+                ...state,
+                announcements: [action.payload, ...state.announcements]
+            }
+        }
+
         case announcementTypes.DELETE_ANNOUNCEMENT: {
             
             const announcements = state.announcements;

@@ -14,7 +14,12 @@ export const getAnnouncementsAction = (token) => async(dispatch) => {
     }
 };
 
-export const deleteAnnouncement = ({announcementId}) => ({
+export const deleteAnnouncementAction = ({announcementId}) => ({
     type: announcementTypes.DELETE_ANNOUNCEMENT,
     payload: {announcementId}
-})
+});
+
+export const createAnnouncementAction = (announcement) => ({
+    type: announcementTypes.CREATE_ANNOUNCEMENT,
+    payload: announcement,
+});

@@ -29,3 +29,17 @@ export const deleteAnnouncementService = async (token, announcementId) => {
         console.log(err);
     }
 };
+
+export const createAnnouncementService = async (token, bulletin) => {
+    try {
+        const response = await axios(apiUrl + '/api/announcement/', {
+            method: 'POST',
+            headers: { token},
+            data: {bulletin}
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+};
