@@ -14,7 +14,7 @@ const SettingsLogout = ({ signout, currentUser }) => {
       { (isCart || isStore) && (
         <Link to="/cart"><FiShoppingCart className="settings-logout--settings" /></Link>
       )}
-      <FiSettings className="settings-logout--settings" />
+      {/* <FiSettings className="settings-logout--settings" /> */}
       <div className="settings-logout__icon" onClick={signout}>
         <span className="ettings-logout__icon--initials">
           {currentUser.fullName[0]}

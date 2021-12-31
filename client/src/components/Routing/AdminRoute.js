@@ -7,7 +7,6 @@ const AdminRoute = ({ children, token, admin, ...props }) => {
   if (!token && !admin) {
     return <Redirect to="/" />;
   }
-  console.log(admin);
   return (
     <LayoutFlat>
       <Route {...props}>{children}</Route>

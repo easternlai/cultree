@@ -27,5 +27,4 @@ export const connectSocket = () => (dispatch) => {
     socket.on('deleteAnnouncement', (data) => {
         dispatch(deleteAnnouncementAction(data));
     });
-
 };

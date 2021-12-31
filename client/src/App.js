@@ -21,6 +21,7 @@ import ViewOrdersPage from "./pages/VewOrdersPage/ViewOrdersPage";
 import AlbumsPage from "./pages/AlbumsPage/AlbumsPage";
 import CreateAlbumPage from "./pages/CreateAlbumPage/CreateAlbumPage";
 import AlbumPage from "./pages/AlbumPage/AlbumPage";
+import ManageUsers from "./pages/AdminPortal/ManageUsers/ManageUsers";
 
 export function App({ loginStart, connectSocket, currentUser, authToken }) {
   const localToken = localStorage.getItem("token");
@@ -52,8 +53,9 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <Route path="/register" component={RegisterPage} />
           <ProtectedRoute exact path="/" component={HomePage} />
           <ProtectedRoute path="/event/:eventId" component={EventPage} />
-          <AdminRoute exact path="/admin" component={AdminPortal} />
+          <AdminRoute exact path="/admin" component={AdminPortal} /> 
           <AdminRoute exact path="/admin/createuser" component={CreateUser} />
+          <AdminRoute exact path="/admin/manageusers" component={ManageUsers} />
           <ProtectedRoute exact path="/store" component={StorePage} />
           <AdminRoute exact path="/store/createitem" component={CreateStoreItemPage} />
           <ProtectedRoute exact path="/createevent" component={CreateEventPage} />

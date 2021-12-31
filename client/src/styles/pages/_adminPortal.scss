@@ -1,58 +1,109 @@
 .admin {
+  &__options {
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
 
-    &__options {
-        padding-top: 20px ;
-        &--items {
-            background-color: $color-secondary-red;
-            color: $color-white;
-            padding: 10px 5px;
-            width: 200px;
-            border-radius: $radius-items;
-            text-align: center;
-            cursor: pointer;
-
-        }
+    &--items {
+      background-color: $color-secondary-red;
+      color: $color-white;
+      padding: 10px 5px;
+      width: 200px;
+      border-radius: $radius-items;
+      text-align: center;
+      cursor: pointer;
+      margin-right: 40px;
     }
+  }
 }
 
 .create-user {
+  display: flex;
+  flex-direction: column;
+
+  &__form {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
+    width: 600px;
 
-    &__form {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        width: 600px;
-
-        &__item{
-            display: flex;
-            align-items: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            &--label {
-                flex:1;
-            }
-            &--input {
-                flex: 3;
-                padding: 10px;
-                font-size: 1.2rem;
-                border-radius: $radius-items;
-                
-            }
-            &--check-box {
-            
-            }
-        }
-        &--button {
-            margin-top: 10px;
-            padding: 10px;
-            width: 150px;
-            color: white;
-            background-color: $color-secondary-red;
-            border: none;
-            border-radius: 20px;
-         
-        }
+    &__item {
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      &--label {
+        flex: 1;
+      }
+      &--input {
+        flex: 3;
+        padding: 10px;
+        font-size: 1.2rem;
+        border-radius: $radius-items;
+      }
+      &--check-box {
+      }
     }
+    &--button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 150px;
+      color: white;
+      background-color: $color-secondary-red;
+      border: none;
+    }
+  }
+}
+
+.manage-users {
+  &__user-list {
+    display: grid;
+    max-width: 80%;
+    grid-template-columns:
+      minmax(220px, 1.5fr) minmax(220px, 1.5fr) minmax(120px, 1fr)
+      minmax(80px, 1fr) minmax(80px, 1fr);
+
+    &--header {
+      background-color: $color-secondary-red;
+      color: white;
+      padding: 5px 10px;
+      &:first-child {
+          border-top-left-radius: 5px 5px;
+      }
+      &:last-child {
+          border-top-right-radius: 5px 5px;
+      }
+    }
+    &__item {
+      padding: 5px 10px;
+      border-left: 1px solid $color-grey;
+      border-right: 1px solid $color-grey;
+      border-bottom: 1px solid $color-grey;
+      display: flex;
+
+      &--save {
+        cursor: pointer;
+        background-color: $color-secondary-red;
+        width: 50px;
+        color: $color-white;
+        text-align: center;
+        border-radius: $radius-items;
+      }
+      &--edit {
+        cursor: pointer;
+        border: 2px solid $color-secondary-red;
+        width: 50px;
+        text-align: center;
+        border-radius: $radius-items;
+      }
+      &--cancel {
+        margin-left: 20px;
+        cursor: pointer;
+        border: 2px solid $color-secondary-red;
+        width: 50px;
+        text-align: center;
+        border-radius: $radius-items;
+      }
+    }
+  }
 }

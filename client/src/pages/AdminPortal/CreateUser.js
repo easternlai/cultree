@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { createUser } from "../../services/adminService";
+import { createUserService } from "../../services/adminService";
 
 const CreateUser = ({ token }) => {
   const [fullName, setFullName] = useState("");
@@ -11,7 +11,7 @@ const CreateUser = ({ token }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createUser(fullName, email, password, startDate, admin ? 5: 0, token);
+    createUserService(fullName, email, password, startDate, admin ? 5: 0, token);
     setFullName("");
     setEmail("");
     setPassword("");
@@ -23,7 +23,7 @@ const CreateUser = ({ token }) => {
     <div className="layout-flat__body create-user">
       <div className="heading-2__bold">
         <span>Admin Portal</span>
-        <span className="heading-1__bold"> >> </span>
+        <span className="heading-1__bold">>></span>
         <span>Create User</span>
       </div>
 

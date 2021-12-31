@@ -7,7 +7,8 @@ const Header = () => {
     return (
         <div className="header layout__header">
             <Logo />
-            <input className="header__search-box" placeholder="Search for activity..."/>
+            {/* <div className="header__search-box" placeholder="Search for activity..."/> */}
+            <div />
             <SettingsLogout />
         </div>
     )
