@@ -23,10 +23,24 @@ export const getUsersService = async (token) => {
             method: 'GET',
             headers: {token},
         });
-        console.log(response.data);
         return response.data;
 
     } catch (err) {
         console.log(err);
     }
+}
+
+export const editUserService = async (token, userId, points, privileges) => {
+    try {
+        const response = await axios(apiUrl+ '/api/admin/user', {
+            method: 'PUT',
+            headers: {token },
+            data: { userId, points, privileges},
+        });
+
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+
 }

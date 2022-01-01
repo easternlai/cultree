@@ -27,7 +27,7 @@ const ManageUsers = ({ token }) => {
       </div>
       {state.users.length > 0 &&
         state.users.map((user) => (
-          <UserDetails user={user} dispatch={dispatch} />
+          <UserDetails user={user} token={token} dispatch={dispatch} />
         ))}
     </div>
   );

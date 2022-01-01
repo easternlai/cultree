@@ -84,25 +84,42 @@
       &--save {
         cursor: pointer;
         background-color: $color-secondary-red;
+        padding-top: 2px;
         width: 50px;
         color: $color-white;
         text-align: center;
         border-radius: $radius-items;
+        margin-left: 10px;
+        opacity: 95%;
       }
       &--edit {
         cursor: pointer;
         border: 2px solid $color-secondary-red;
-        width: 50px;
+        width: 70px;
         text-align: center;
         border-radius: $radius-items;
       }
       &--cancel {
-        margin-left: 20px;
+
         cursor: pointer;
         border: 2px solid $color-secondary-red;
-        width: 50px;
+        width: 70px;
         text-align: center;
         border-radius: $radius-items;
+      }
+
+      &--input{
+          width: 50px;
+          &:focus{
+              outline: none;
+          }
+      }
+
+      &--select{
+          width: 100px;
+          &:focus{
+              outline: none;
+          }
       }
     }
   }
