@@ -14,10 +14,9 @@ const ManageUsers = ({ token }) => {
     })();
   }, []);
 
-  console.log(state);
   return (
     <div className="layout-flat__body manage-users">
-      <div className="heading-2">manage users</div>
+      <div className="heading-2__bold">Manage Users</div>
       <div className="manage-users__user-list">
         <div className="heading-3__bold manage-users__user-list--header">name</div>
         <div className="heading-3__bold manage-users__user-list--header">email</div>

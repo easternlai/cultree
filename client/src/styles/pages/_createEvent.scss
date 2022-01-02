@@ -15,7 +15,7 @@
       padding: 20px 10px;
       border-radius: $radius-items;
       background-color: $color-grey;
-      border: 1px solid $color-black;
+  
 
       &--input {
         font-size: 1.5rem;
@@ -76,7 +76,7 @@
       font-size: 2rem;
       margin-bottom: 20px;
       border-radius: $radius-items;
-      border: 1px solid $color-black;
+      border: 1px solid gray;
       
 
       &:focus {

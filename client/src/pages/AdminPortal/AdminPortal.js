@@ -9,7 +9,7 @@ const AdminPortal = () => {
                 <div className="admin__options">
                     <div className="admin__options--items heading-2"><Link to="/admin/createuser" className="no-dec">+ Create User</Link></div>
                     <div className="admin__options--items heading-2"><Link to="/admin/manageusers" className="no-dec">Manage Users</Link></div>
-                    <div className="admin__options--items heading-2"><Link to="/admin" className="no-dec">Store Fulfillment</Link></div>
+                    <div className="admin__options--items heading-2"><Link to="/admin/store" className="no-dec">Store Fulfillment</Link></div>
                 </div>
         </div>
     )

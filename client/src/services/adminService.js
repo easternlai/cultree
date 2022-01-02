@@ -44,3 +44,32 @@ export const editUserService = async (token, userId, points, privileges) => {
     }
 
 }
+
+export const getOrdersService = async (token, orderStatus='pending') => {
+    
+    try {
+        const response = await axios(apiUrl + '/api/admin/store/' + orderStatus, {
+            method: 'GET',
+            headers: {token},
+        });
+
+        return response.data;
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const ChangeOrderStatusService = async (token, orderId, newStatus) => {
+    try {
+        console.log(orderId);
+        const response = await axios(apiUrl + '/api/admin/store/changestatus', {
+            method: 'PUT',
+            headers: {token},
+            data: {orderId, newStatus},
+        });
+
+    } catch (err) {
+        console.log(err);
+    }
+}

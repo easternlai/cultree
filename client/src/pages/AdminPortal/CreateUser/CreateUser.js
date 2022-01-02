@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { createUserService } from "../../services/adminService";
+import { createUserService } from "../../../services/adminService";
 
 const CreateUser = ({ token }) => {
   const [fullName, setFullName] = useState("");

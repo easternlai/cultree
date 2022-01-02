@@ -12,7 +12,7 @@ import { connectSocket } from "./redux/socket/socketActions";
 import EventPage from "./pages/EventPage/EventPage";
 import AdminRoute from "./components/Routing/AdminRoute";
 import AdminPortal from "./pages/AdminPortal/AdminPortal";
-import CreateUser from "./pages/AdminPortal/CreateUser";
+import CreateUser from "./pages/AdminPortal/CreateUser/CreateUser";
 import CreateEventPage from "./pages/CreateEventPage/CreateEventPage";
 import StorePage from "./pages/StorePage/StorePage";
 import ShoppingCartPage from "./pages/ShoppingCartPage/ShoppingCartPage";
@@ -22,6 +22,7 @@ import AlbumsPage from "./pages/AlbumsPage/AlbumsPage";
 import CreateAlbumPage from "./pages/CreateAlbumPage/CreateAlbumPage";
 import AlbumPage from "./pages/AlbumPage/AlbumPage";
 import ManageUsers from "./pages/AdminPortal/ManageUsers/ManageUsers";
+import StoreFulfillment from "./pages/AdminPortal/StoreFulfillment/StoreFulfillment";
 
 export function App({ loginStart, connectSocket, currentUser, authToken }) {
   const localToken = localStorage.getItem("token");
@@ -56,6 +57,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <AdminRoute exact path="/admin" component={AdminPortal} /> 
           <AdminRoute exact path="/admin/createuser" component={CreateUser} />
           <AdminRoute exact path="/admin/manageusers" component={ManageUsers} />
+          <AdminRoute exact path="/admin/store" component={StoreFulfillment} />
           <ProtectedRoute exact path="/store" component={StorePage} />
           <AdminRoute exact path="/store/createitem" component={CreateStoreItemPage} />
           <ProtectedRoute exact path="/createevent" component={CreateEventPage} />

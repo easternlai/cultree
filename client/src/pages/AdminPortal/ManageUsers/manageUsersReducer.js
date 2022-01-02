@@ -1,5 +1,7 @@
 export const INITIAL_STATE = {
-    users: []
+    users: [],
+    error: false,
+    fetching: false,
 };
 
 export const manageUsersReducer = (state, action) => {
@@ -12,7 +14,6 @@ export const manageUsersReducer = (state, action) => {
             }
 
         case 'EDIT_USER':
-            console.log(action.payload);
             const users = state.users;
             const userIndex = users.findIndex(user => user._id === action.payload.userId );
             users[userIndex].admin = action.payload.admin;
