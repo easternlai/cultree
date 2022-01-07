@@ -4,6 +4,7 @@ import { INITIAL_STATE } from "./ViewOrdersPageReducer";
 import { getUserOrdersService } from "../../services/orderServices";
 import { ViewOrdersPageReducer } from "./ViewOrdersPageReducer";
 import Moment from "react-moment";
+import StoreView from "../../components/StoreView/StoreView";
 
 const ViewOrdersPage = ({ token }) => {
   const [state, dispatch] = useReducer(ViewOrdersPageReducer, INITIAL_STATE);
@@ -21,6 +22,7 @@ const ViewOrdersPage = ({ token }) => {
       <div>
         <span className="heading-2__bold">Orders</span>
       </div>
+      <StoreView />
       {state.orders.length ? (
         <div className="view-order__orders">
           {!state.fetching &&

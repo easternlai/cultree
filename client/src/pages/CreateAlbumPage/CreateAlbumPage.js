@@ -33,7 +33,7 @@ const CreateAlbumPage = ({ token }) => {
   return (
     <div className="layout-flat__body create-album">
       <div>
-        <span className="heading-2">Create Album</span>
+        <span className="heading-2__bold">Create Album</span>
       </div>
       <div
         onClick={handleCreateAlbum}
@@ -41,7 +41,7 @@ const CreateAlbumPage = ({ token }) => {
           unsupportedFiles.length > 0 || !albumName
             ? "create-album--upload-button__disabled"
             : "create-album--upload-button"
-        } heading-2`}
+        } heading-3`}
       >
         + Create Album
       </div>

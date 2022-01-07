@@ -5,6 +5,7 @@ const userTypes = {
     SIGN_IN_FAILURE: 'SIGN_IN_FAILURE',
     LOGIN_START: 'LOGIN_START',
     UPDATE_BALANCE: 'UPDATE_BALANCE',
+    LOGIN_ERROR: 'LOGIN_ERROR',
 };
 
 export default userTypes;

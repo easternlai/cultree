@@ -10,6 +10,7 @@ export const INITIAL_STATE = {
     date: null,
     time: null,
     location: null,
+    address: null,
     name: null,
     comments: [],
     organizer: {
@@ -26,7 +27,6 @@ export const EventPageReducer = (state, action) => {
 
   switch (action.type) {
     case "FETCH_EVENT_SUCCESS": {
-      console.log(eventData);
       return {
         ...state,
         fetching: false,
@@ -40,6 +40,7 @@ export const EventPageReducer = (state, action) => {
           time: eventData.time,
           location: eventData.location,
           name: eventData.name,
+          address: eventData.address,
           organizer: {
             email: eventData.organizer.email,
             fullName: eventData.organizer.fullName,

@@ -27,7 +27,9 @@ const Announcements = ({
     setBulletin('');
     setEditAnnouncements(false);
   };
-
+  if(fetching) {
+    return <div></div>
+  }
   return (
     <div className="layout-w-sidebar__sidebar announcements">
       <div className="heading-2__bold announcements--heading">

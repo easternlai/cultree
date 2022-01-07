@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { IoMdAppstore } from "react-icons/io";
+import { connect } from "react-redux";
 import { editUserService } from "../../services/adminService";
+import { updateBalanceAction } from "../../redux/user/userActions";
 
-const UserDetails = ({ user, token, dispatch }) => {
+const UserDetails = ({ user, token, dispatch, currentUser, updateBalanceAction }) => {
   const [edit, setEdit] = useState(false);
   const [admin, setAdmin] = useState(user.admin);
   const [balance, setBalance] = useState(user.balance);
@@ -15,10 +18,9 @@ const UserDetails = ({ user, token, dispatch }) => {
   const handleSave = async() => {
     setEdit(false);
     const acknowledgement = await editUserService(token, user._id, balance, admin);
-    console.log(acknowledgement.updatedUser);
     dispatch({type: 'EDIT_USER', payload: {userId: user._id, balance, admin}})
+    updateBalanceAction(balance);
   };
-
 
   return (
     <div id={user._id} className="manage-users__user-list">
@@ -31,7 +33,7 @@ const UserDetails = ({ user, token, dispatch }) => {
       {
         <div className="heading-3 manage-users__user-list__item">
           {edit ? (
-            <input className="heading-3 manage-users__user-list__item--input" onChange={(e) => setBalance(parseInt(e.target.value))} value={balance} />
+            <input className="heading-3 manage-users__user-list__item--input" onChange={(e) => setBalance(parseInt(e.target.value))} value={balance || 0} />
           ) : (
             <div>{user.balance}</div>
           )}
@@ -40,7 +42,7 @@ const UserDetails = ({ user, token, dispatch }) => {
       <div className="heading-3 manage-users__user-list__item">
         {edit ? (
           <select className="heading-3 manage-users__user-list__item--select" onChange={(e)=> setAdmin(parseInt(e.target.value))}>
-            <option value="1">user</option>
+            {currentUser._id  !== user._id && <option value="1">user</option>}
             <option value="5" selected={user.admin === 5 ? true : false}>
               admin
             </option>
@@ -79,4 +81,12 @@ const UserDetails = ({ user, token, dispatch }) => {
   );
 };
 
-export default UserDetails;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateBalanceAction: (balance) => dispatch(updateBalanceAction(balance))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserDetails);

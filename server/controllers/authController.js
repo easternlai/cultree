@@ -52,7 +52,6 @@ module.exports.login = async (req, res, next) => {
     }
 
     //find out if passwords match through bcrypt
-    console.log(user.balance);
     //res send user
     bcrypt.compare(password, user.password, function (err, val) {
       if (err) return next(err);

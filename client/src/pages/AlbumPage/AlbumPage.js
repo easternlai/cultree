@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { RiDeleteBin7Line } from "react-icons/ri";
+import spinner from "../../images/spinner1.gif";
 
 import {
   addPhotosService,
@@ -13,6 +14,7 @@ import DropZone from "../../components/DropZone/DropZone";
 
 const AlbumPage = ({ token, user }) => {
   let history = useHistory();
+  const [fetching, setFetching] = useState(false);
   const [albumName, setAlbumName] = useState();
   const [photos, setPhotos] = useState([]);
   const [accessLevel, setAccessLevel] = useState(5);
@@ -26,6 +28,7 @@ const AlbumPage = ({ token, user }) => {
 
   useEffect(() => {
     (async function () {
+      setFetching(true);
       const albumPhotos = await getAlbumService(token, albumId);
       if (albumPhotos) {
         setAlbumName(albumPhotos.name);
@@ -34,6 +37,7 @@ const AlbumPage = ({ token, user }) => {
           setAccessLevel(0);
         }
       }
+      setFetching(false);
     })();
   }, [addPhotos, setAddPhotos]);
 
@@ -67,6 +71,15 @@ const AlbumPage = ({ token, user }) => {
       setAddPhotos(false);
     }
   };
+
+  if(fetching) {
+    return (
+      <div className="spinner-wrapper-2">
+      <img src={spinner} className="spinner-1 " />
+    </div>
+    )
+    
+  }
 
   return (
     <div className="layout-flat__body album">

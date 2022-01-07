@@ -59,12 +59,12 @@ const DropZone = ({validFiles, setValidFiles, unsupportedFiles, setUnsupportedFi
     return parseFloat((size / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const fileType = (fileName) => {
-    return (
-      fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length) ||
-      fileName
-    );
-  };
+  // const fileType = (fileName) => {
+  //   return (
+  //     fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length) ||
+  //     fileName
+  //   );
+  // };
 
   const handleFiles = (files) => {
     for (let i = 0; i < files.length; i++) {

@@ -8,12 +8,12 @@ const User = require("../models/User");
 
 const {
   sendNewEventSocket,
-  deleteEventSocket,
+  sendDeleteEventSocket,
   attendEventSocket,
 } = require("../handlers/socketHandler");
 
 module.exports.createEvent = async (req, res, next) => {
-  const { location, date, type, caption, name, time, imageLink } = req.body;
+  const { location, address, date, type, caption, name, time, imageLink } = req.body;
   let { image } = req.body;
   const userId = req.user.id;
 
@@ -49,6 +49,7 @@ module.exports.createEvent = async (req, res, next) => {
 
     event = new Event({
       location,
+      address,
       name,
       date,
       time,
@@ -82,8 +83,6 @@ module.exports.createEvent = async (req, res, next) => {
         },
       },
     ]);
-
-    console.log(receivers);
     receivers.map((receiver) => {
       sendNewEventSocket(
         req,
@@ -108,7 +107,7 @@ module.exports.deleteEvent = async (req, res, next) => {
     const event = await Event.findOne({ _id: eventId, organizer: userId });
 
     if (!event) {
-      res
+      return res
         .status(404)
         .send({ error: "Could not find an event associated with this user." });
     }
@@ -135,9 +134,10 @@ module.exports.deleteEvent = async (req, res, next) => {
         },
       },
     ]);
+    console.log(receivers);
 
     receivers.map((receiver) => {
-      deleteEventSocket(req, { eventId }, receiver);
+      sendDeleteEventSocket(req, { eventId }, receiver);
     });
   } catch (err) {
     next(err);
@@ -204,7 +204,11 @@ module.exports.getEvent = async (req, res, next) => {
   const { eventId } = req.params;
 
   try {
+
     const event = await Event.aggregate([
+      {
+        $match: {tenantId: ObjectId(req.user.tenantId)}
+      },
       {
         $match: { _id: ObjectId(eventId) },
       },

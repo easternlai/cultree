@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
+import Logo from '../../components/Logo/Logo';
 
 import LoginForm from '../../components/LoginForm/LoginForm';
 
@@ -9,7 +10,7 @@ const LoginPage = ({currentUser}) => {
     return (
         <div className="login">
             <div className="login__wrapper">
-                <div className="login__signin heading-1">Sign in to beZoo</div>
+                <Logo />
                 <LoginForm />
             </div>
         </div>

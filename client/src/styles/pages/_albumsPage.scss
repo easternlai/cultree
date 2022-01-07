@@ -8,10 +8,12 @@
         display: flex;
         flex-direction: column;
         margin-right: 50px;
+        
       &__blank {
         background-color: $color-secondary-red;
         text-align: center;
-        line-height: 100px;
+        line-height: 125px;
+        text-align: center;
         &--icon {
           color: $color-white;
         }
@@ -19,12 +21,16 @@
 
       &--image {
         border-radius: $radius-items;
-        height: 100px;
-        width: 100px;
+        height: 125px;
+        width: 125px;
       }
 
       &--name{
           text-align: center;
+          max-width: fit-content;
+          padding: 5px 1px;
+          line-height: 15px;
+          width: 100%;
       }
     }
   }

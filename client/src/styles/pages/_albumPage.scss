@@ -68,8 +68,8 @@
             
             &--image{
                 height: 325px;
-                max-width: 500px;
-                object-fit: cover;
+                width: 500px;
+                object-fit: contain;
             }
 
             &--trash{

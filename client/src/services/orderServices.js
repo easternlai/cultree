@@ -9,8 +9,8 @@ export const placeOrderService = async (token, items) => {
       headers: { token },
       data: { items },
     });
-    console.log(response.data);
-    return response.data.orders;
+
+    return response.data;
 
   } catch (err) {
     return err;
@@ -24,7 +24,6 @@ export const getUserOrdersService = async (token) => {
             headers: {token},
         });
 
-        console.log(response.data);
         return response.data;
 
     } catch (err) {

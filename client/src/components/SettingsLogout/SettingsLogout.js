@@ -16,7 +16,7 @@ const SettingsLogout = ({ signout, currentUser }) => {
       )}
       {/* <FiSettings className="settings-logout--settings" /> */}
       <div className="settings-logout__icon" onClick={signout}>
-        <span className="ettings-logout__icon--initials">
+        <span className="settings-logout__icon--initials">
           {currentUser.fullName[0]}
         </span>
       </div>

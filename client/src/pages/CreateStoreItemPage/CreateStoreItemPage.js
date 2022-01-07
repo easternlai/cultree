@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import StoreView from '../../components/StoreView/StoreView';
 import { createProduct } from '../../services/storeServices';
 
 const CreateStoreitemPage = ({token}) => {
@@ -33,7 +34,8 @@ const CreateStoreitemPage = ({token}) => {
 
     return(
         <div className="layout-flat__body create-item">
-            <div className="heading-2">Add Store Item</div>
+            <div className="heading-2__bold">Add Store Item</div>
+            <StoreView />
             <input value={name} placeholder="product name (required)" onChange={(e)=>setName(e.target.value)} className="create-item--field heading-3" />
             <input value={price} placeholder="price in points (required)" onChange={(e)=>setPrice(e.target.value)} className="create-item--field heading-3" />
             <input value={maxOrder} placeholder="how many can one person order" onChange={(e)=>setMaxOrder(e.target.value)} className="create-item--field heading-3" />

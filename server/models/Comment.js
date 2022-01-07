@@ -1,4 +1,3 @@
-const { ObjectId } = require('bson');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -11,11 +10,13 @@ const CommentSchema = new Schema({
     message: String,
     author: {
         type: Schema.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
     event: {
         type: Schema.ObjectId,
-        ref: 'Event'
+        ref: 'Event',
+        required: true,
     },
     created: {
         type: Date,

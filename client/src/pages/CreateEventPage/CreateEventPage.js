@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import {Redirect} from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { createEvent, yelpSearch } from "../../services/eventServices";
 
-const CreateEventPage = ({token}) => {
+const CreateEventPage = ({ token }) => {
   const [search, setSearch] = useState("");
   const [businesses, setBusinesses] = useState(undefined);
   const [image, setImage] = useState("");
@@ -13,10 +13,21 @@ const CreateEventPage = ({token}) => {
   const [time, setTime] = useState("");
   const [caption, setCaption] = useState("");
   const [venue, setVenue] = useState("");
+  const [address, setAddress] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createEvent(token, "standard", name, venue, date, time, caption, image);
+    createEvent(
+      token,
+      "standard",
+      name,
+      venue,
+      address,
+      date,
+      time,
+      caption,
+      image
+    );
     setName("");
     setDate("");
     setTime("");
@@ -25,22 +36,22 @@ const CreateEventPage = ({token}) => {
     setVenue("");
     setSearch("");
     setBusinesses("");
-
+    setAddress('');
   };
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     (async function () {
       const allBusinesses = await yelpSearch(search);
-      if(allBusinesses){
-      setBusinesses(allBusinesses.slice(0, 1));
+      if (allBusinesses) {
+        setBusinesses(allBusinesses.slice(0, 1));
       }
     })();
   };
 
   return (
     <div className="layout-flat__body create-event">
-      <div className="heading-2">Create Event</div>
+      <div className="heading-2 bold">Create Event</div>
 
       <div className="create-event__search">
         <div className="create-event__search--heading">
@@ -77,6 +88,7 @@ const CreateEventPage = ({token}) => {
                 onClick={() => {
                   setVenue(business.name);
                   setImage(business.image_url);
+                  setAddress(business.location.address1 + " " + business.location.address2 + " " + business.location.address3 + " " + business.location.city);
                 }}
               >
                 Select
@@ -101,6 +113,14 @@ const CreateEventPage = ({token}) => {
           value={venue}
           onChange={(e) => setVenue(e.target.value)}
           placeholder="venue"
+          maxLength="30"
+        />
+        <input
+          type="text"
+          className="create-event__form--input"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          placeholder="address"
           maxLength="30"
         />
         <input
@@ -139,7 +159,7 @@ const CreateEventPage = ({token}) => {
 };
 
 const mapStateToProps = (state) => ({
-  token: state.user.token
+  token: state.user.token,
 });
 
 export default connect(mapStateToProps)(CreateEventPage);

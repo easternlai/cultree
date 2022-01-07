@@ -9,20 +9,18 @@
   }
 
   &__icon {
-    background-color: $color-secondary-fog;
-    border-radius: 50%;
-    height: 15px;
-    width: 15px;
-    padding: 6px;
-    text-align: center;
-    line-height: 12px;
+
     cursor: pointer;
 
     &--initials {
         font-size: 1.5rem;
         font-family: 'Assistant', sans-serif;
-        font-weight: 500;
+
         color: $color-secondary-red;
+        background-color: $color-secondary-fog;
+        padding: 6px 11.5px;
+        border-radius: 50%;
+        
     }
   }
 }

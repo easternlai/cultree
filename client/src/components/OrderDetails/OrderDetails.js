@@ -11,7 +11,6 @@ const OrderDetails = ({ token, order, dispatch }) => {
         setStatus(newStatus);
         ChangeOrderStatusService(token, order._id, newStatus);
     }
-  console.log(order.status);
   return (
     <div id={order._id} className="fulfillment__order-list">
       <div className="heading-3 fulfillment__order-list__item">

@@ -15,11 +15,13 @@
 
   &__uploaded-images {
     display: flex;
+    flex-direction: column;
 
     &__tag {
       margin: 5px 3px 0px 0px;
+      width:fit-content;
       padding: 3px 5px;
-      background-color: rgba(211, 211, 211, 0.863);
+      border: 1px solid $color-grey;
       border-radius: $radius-items;
 
       &--file-error-message {
@@ -31,7 +33,7 @@
           background-color: $color-secondary-red;
           color: white;
           padding: 2px 5px;
-          border-radius: 100px;
+          border-radius: 50%;
       }
     }
   }

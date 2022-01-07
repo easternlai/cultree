@@ -46,17 +46,18 @@ const EventDialog = ({
           <div className="event__dialog__heading--name heading-3__bold">
             {eventData.name}
           </div>
-          <div className="event__dialog__heading--type heading-4__bold">
+          <div className="event__dialog__heading--type heading-3__bold">
             {eventData.type}
           </div>
         </div>
         <Link to={`/event/${eventId}`} className="event__dialog__info no-dec">
           <div className="heading-4">{eventData.caption}</div>
-          <div className="heading-5">
+          <div className="heading-4">
             <span>created by </span>
-            <span className="heading-5__bold">
+            <span className="heading-4__bold">
               {eventData.organizer.fullName}
             </span>
+            <div className="heading-5 underscore"> view more details</div>
           </div>
         </Link>
         {eventData.image && <img src={eventData.image} className="event__dialog--image" />}

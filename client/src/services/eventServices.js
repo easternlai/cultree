@@ -4,13 +4,13 @@ const yelpApiKey =
 
 const apiUrl = "http://localhost:8080";
 
-export const createEvent = async(token, type, name, location, date, time, caption, imageLink) => {
+export const createEvent = async(token, type, name, location, address, date, time, caption, imageLink) => {
   try {
 
     const response = await axios(apiUrl + `/api/event`, {
       method: "POST", 
       headers: {token},
-      data: {token, type, name, location, date, time, caption, imageLink}
+      data: {token, type, name, location, address, date, time, caption, imageLink}
     });
 
     console.log({message:'event created'});

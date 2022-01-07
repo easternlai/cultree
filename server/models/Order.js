@@ -32,6 +32,11 @@ const OrderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  company: {
+    type: Schema.ObjectId,
+    ref: 'Company',
+    require: true,
+  }
 });
 
 const OrderModel = mongoose.model('Order', OrderSchema);

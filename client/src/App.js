@@ -23,8 +23,10 @@ import CreateAlbumPage from "./pages/CreateAlbumPage/CreateAlbumPage";
 import AlbumPage from "./pages/AlbumPage/AlbumPage";
 import ManageUsers from "./pages/AdminPortal/ManageUsers/ManageUsers";
 import StoreFulfillment from "./pages/AdminPortal/StoreFulfillment/StoreFulfillment";
+import loading from './images/loading.gif'
+import OrderConfirmation from "./pages/OrderConfirmation/OrderConfirmation";
 
-export function App({ loginStart, connectSocket, currentUser, authToken }) {
+export function App({ loginStart, connectSocket, currentUser, authToken, fetching }) {
   const localToken = localStorage.getItem("token");
 
   const {
@@ -43,8 +45,8 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
   }, [loginStart, connectSocket, localToken, authToken]);
 
   const renderApp = () => {
-    if (!currentUser && localToken) {
-      return <p>loading....</p>;
+    if (fetching) {
+      return <div className="loading-wrapper"></div>
     }
 
     return (
@@ -66,6 +68,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
           <ProtectedRoute exact path="/albums" component={AlbumsPage} />
           <ProtectedRoute exact path="/createalbum" component={CreateAlbumPage} />
           <ProtectedRoute path="/albums/:albumId" component={AlbumPage} />
+          <ProtectedRoute path="/orderconfirmation/:orderNumber" component={OrderConfirmation} />
         </Switch>
       </Fragment>
     );
@@ -81,6 +84,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken }) {
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
   authToken: state.user.token,
+  fetching: state.user.fetching,
 });
 
 const mapDispatchtoProps = (dispatch) => ({

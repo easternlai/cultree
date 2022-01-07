@@ -7,18 +7,20 @@ const EventSchema = new Schema({
     required: true,
   },
   location: String,
+  address: String,
   date: String,
   time: String,
   type: String,
   organizer: {
     type: Schema.ObjectId,
     ref: "User",
+    required: true,
   },
   tenantId: {
     type: Schema.ObjectId,
-    ref: 'Company',
+    ref: "Company",
     required: true,
-},
+  },
   caption: String,
   image: String,
   created: {
@@ -27,18 +29,18 @@ const EventSchema = new Schema({
   },
 });
 
-EventSchema.pre('deleteOne', async function(next){
-  const eventId = this.getQuery()['_id'];
+EventSchema.pre("deleteOne", async function (next) {
+  const eventId = this.getQuery()["_id"];
   console.log("this:", this);
   try {
-    await mongoose.model('Comment').deleteMany({event: eventId});
-    await mongoose.model('ParticipantsList').deleteOne({event: eventId});
+    await mongoose.model("Comment").deleteMany({ event: eventId });
+    await mongoose.model("ParticipantsList").deleteOne({ event: eventId });
     next();
   } catch (err) {
     next(err);
   }
 });
 
-const eventModel = mongoose.model('events', EventSchema);
+const eventModel = mongoose.model("events", EventSchema);
 
 module.exports = eventModel;

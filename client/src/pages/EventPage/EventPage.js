@@ -12,6 +12,7 @@ import AttendButton from "../../components/Buttons/AttendButton";
 import EventPageOptions from "../../components/EventPageOptions/EventPageOptions";
 import CommentOptions from '../../components/CommentOptions/CommentOptions';
 import { BiChevronsUp } from "react-icons/bi";
+import spinner from "../../images/spinner1.gif";
 
 const EventPage = ({ token, currentUser }) => {
   const { eventId } = useParams();
@@ -50,6 +51,14 @@ const EventPage = ({ token, currentUser }) => {
     dispatch({ type: "CREATE_COMMENT", payload: { comment } });
     setMessage("");
   }; 
+
+  if (fetching) {
+    return (
+    <div className="spinner-wrapper-2">
+    <img src={spinner} className="spinner-1 " />
+  </div>
+    )
+  }
 
   return (
     <Fragment>
@@ -125,6 +134,9 @@ const EventPage = ({ token, currentUser }) => {
         {!fetching && (
           <div className="event-page__sidebar__body heading-3 ">
             <div>{state.data.location}</div>
+            {state.data.address && (
+              <div>{state.data.address}</div>
+            )}
             <div>{state.data.date}</div>
             <div>{state.data.time}</div>
             <div className="heading-5">

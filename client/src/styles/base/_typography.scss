@@ -1,12 +1,12 @@
 body {
-    font-family: 'Quattrocento', serif;
+  font-family: 'Quattrocento', serif;
     font-weight: 400;
     line-height: 1.7;
   }
 
 .heading-logo {
     font-size: 2rem;
-    font-family: 'Assistant', sans-serif;
+    font-family: 'Quattrocento Sans', sans-serif;
     font-weight: 800;
 
     &__first{
@@ -20,66 +20,84 @@ body {
 
 .heading-0 {
   font-size: 6rem;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .heading-1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: $color-black;
+    font-family: 'Quattrocento Sans', sans-serif;
   }
 
   .heading-1__bold {
     font-size: 3rem;
     color: $color-black;
     font-weight: bold;
+    font-family: 'Quattrocento Sans', sans-serif;
   }
   
   .heading-2 {
-    font-size: 2rem;
+    font-size: 2.3rem;
     color: $color-black;
+    font-family: 'Quattrocento Sans', sans-serif;
   }
 
   .heading-2__bold {
-    font-size: 2rem;
+    font-size: 2.3rem;
     color: $color-black;
     font-weight: bold;
+    font-family: 'Quattrocento Sans', sans-serif;
   }
   
   .heading-3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: $color-black;
     letter-spacing: 0.5px;
+    font-family: 'Quattrocento Sans', sans-serif;
   }
   
   .heading-3__bold {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: $color-black;
-
+    font-family: 'Quattrocento Sans', sans-serif;
     font-weight: bold;
   }
 
   .heading-4 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: $color-black;
+    font-family: 'Quattrocento', serif;
   }
   .heading-4__bold {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: $color-black;
     font-weight: bold;
+    font-family: 'Quattrocento', serif;
   }
   
   
   .heading-5 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: $color-black;
+    font-family: 'Quattrocento', serif;
   }
 
   .heading-5__bold{
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: $color-black;
     font-weight: bold;
+    font-family: 'Quattrocento', serif;
   }
 
 
   .bold{
     font-weight: bold;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+  
+  .underscore {
+    text-decoration: underline;
   }

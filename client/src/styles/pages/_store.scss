@@ -1,5 +1,6 @@
 .store {
-  padding: 20px;
+  margin-top: 20px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,6 +11,7 @@
         padding-right: 20px;
       }
     }
+    margin-bottom: 20px;
   }
 
   &__products {
@@ -21,7 +23,7 @@
 
     &__item {
       margin-right: 40px;
-      margin-bottom: 20px;
+      margin-bottom: 60px;
       width: 200px;
 
       &--image {
@@ -56,6 +58,9 @@
           letter-spacing: 1px;
           border-radius: $radius-items;
           cursor: pointer;
+          &__added{
+            opacity: 70%;
+          }
         }
       }
     }

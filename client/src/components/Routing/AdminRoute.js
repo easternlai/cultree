@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Route, Redirect, Link } from "react-router-dom";
 import LayoutFlat from "../../layouts/LayoutFlat";
 
-const AdminRoute = ({ children, token, admin, ...props }) => {
-  if (!token && !admin) {
+const AdminRoute = ({ children, token, currentUser, ...props }) => {
+  if (!token || !currentUser.admin) {
     return <Redirect to="/" />;
   }
   return (
@@ -15,7 +15,7 @@ const AdminRoute = ({ children, token, admin, ...props }) => {
 };
 
 const mapStateToProps = (state) => ({
-  admin: state.user.currentUser.admin,
+  currentUser: state.user.currentUser,
   token: state.user.token,
 });
 

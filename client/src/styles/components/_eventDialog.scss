@@ -1,22 +1,24 @@
 .event {
     display: flex;
     padding-bottom: 30px;
+    margin-top: 10px;
+
 
     &__icon {
-        background-color: $color-secondary-fog;
-        border-radius: 50%;
-        height: 20px;
-        width: 20px;
         margin-right: 20px;
-        padding: 8px 12px;
-        text-align: center;
-        line-height: 18px; 
+        margin-top: 5px;
 
         &--initials {
-                    font-size: 1.5rem;
-        font-family: 'Assistant', sans-serif;
-        font-weight: 500;
-        color: $color-secondary-red;
+            font-size: 1.7rem;
+            font-family: 'Assistant', sans-serif;
+            font-weight: 700;
+            color: $color-secondary-red;
+            background-color: $color-secondary-fog;
+            padding: 5px 12px;
+            border-radius: 50%;
+            margin-left: auto;
+            margin-right: auto;
+
         }
     }
 

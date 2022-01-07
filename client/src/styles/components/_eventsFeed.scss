@@ -1,12 +1,13 @@
 .feed {
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 50px;
+  margin-top: 5px;
 
   &-sort {
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
 
 
     &--options {

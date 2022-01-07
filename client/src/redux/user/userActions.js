@@ -6,9 +6,9 @@ export const loadUser = ({user, token}) => {
     return({type:userTypes.LOGIN_SUCCESS, payload: {user, token }});
 }
 
-export const signout = () => async dispatch=> {
-    await localStorage.removeItem('token');
-    console.log('test1');
+export const signout = () =>  dispatch=> {
+    localStorage.removeItem('token');
+
     dispatch({type: userTypes.SIGN_OUT});
 }
 
@@ -16,19 +16,22 @@ export const loginStart = (email, password, token) => async (dispatch) => {
     try {
         dispatch({type: userTypes.LOGIN_START});
         const res = await loginAuthentication(email, password, token);
-        console.log(res);
         dispatch(loadUser(res));
+
     } catch (err) {
+        console.log(err.message);
         dispatch(signout());
-        console.log(err);
+        dispatch({type: userTypes.LOGIN_ERROR, payload: err.message})
+        
+        return (err);
     }
 }
 
 export const updateBalanceAction = (newBalance) => async (dispatch) => {
     try {
-        console.log('test');
+
         dispatch({type: userTypes.UPDATE_BALANCE, payload: newBalance});
     } catch (err) {
-        console.log(err)
+        dispatch({type: userTypes.LOGIN_ERROR, payload: err});
     }
 }

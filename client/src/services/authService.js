@@ -13,6 +13,6 @@ export const loginAuthentication = async (email, password, token) => {
         return res.data;
 
     } catch (err) {
-        throw new Error(err.response.data.error);
+        throw new Error (err.response.data.error);
     }
 }

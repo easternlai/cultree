@@ -24,7 +24,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 fetching: false,
             }
         case userTypes.SIGN_OUT:
-            console.log('test33');
             return {
                 ...state,
                 error: false,
@@ -34,11 +33,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
             }
         
         case userTypes.UPDATE_BALANCE:
-            console.log(action.payload);
             return {
                 ...state,
                 currentUser: {...state.currentUser, balance: action.payload}
             }
+
+        case userTypes.LOGIN_ERROR:
+
+        console.log(action.payload);
+            return {
+                ...state,
+                error: action.payload,
+            }
+
         default:
             return state;
     }
