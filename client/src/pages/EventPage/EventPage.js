@@ -47,9 +47,11 @@ const EventPage = ({ token, currentUser }) => {
 
   const handleComment = async (event) => {
     event.preventDefault();
+    if (message.length > 0)  {
     const comment = await createComment(eventId, token, message);
     dispatch({ type: "CREATE_COMMENT", payload: { comment } });
     setMessage("");
+    }
   }; 
 
   if (fetching) {

@@ -8,8 +8,9 @@ const LoginForm = ({ loginStart, error }) => {
   const [password, setPassword] = useState("");
 
 
-  const handleSubmit = async () => {
-    if (!fetching && email.length > 0 && password.length > 0) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (email.length > 0 && password.length > 0) {
       loginStart(email, password);
 
     }
