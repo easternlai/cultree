@@ -11,7 +11,6 @@ import moment from "moment";
 import AttendButton from "../../components/Buttons/AttendButton";
 import EventPageOptions from "../../components/EventPageOptions/EventPageOptions";
 import CommentOptions from '../../components/CommentOptions/CommentOptions';
-import { BiChevronsUp } from "react-icons/bi";
 import spinner from "../../images/spinner1.gif";
 
 const EventPage = ({ token, currentUser }) => {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiUrl = "http://localhost:8080";
+const apiUrl = "http://localhost:5000";
 
 export const getAnnouncementsService = async (token) => {
     try {
