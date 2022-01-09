@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:5000";
+const apiUrl = "http://localhost:8080";
 
 export const ModifyCart = async (token, productId, orderPrice, quantity) => {
   try {

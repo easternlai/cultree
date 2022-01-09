@@ -2,7 +2,7 @@ import axios from "axios";
 const yelpApiKey =
   "U-8w66jBxV3tGqzpsZB78XWWSAOO77l2kQQMQhPwmtROCyYONtLYVozDupjOSXlyzPzRpL5SN-n20pjpmWHvq5LGq_Fc6spSeXZND9gf7FMLXY1pWL_9J3EZ1H5mYXYx";
 
-const apiUrl = "http://localhost:5000";
+const apiUrl = "http://localhost:8080";
 
 export const createEvent = async(token, type, name, location, address, date, time, caption, imageLink) => {
   try {
