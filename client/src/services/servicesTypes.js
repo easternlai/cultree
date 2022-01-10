@@ -1,1 +1,2 @@
-export const apiUrl = 'http://localhost:8000';
+export const apiUrl = 'http://cultree-server-service:8000';
+

@@ -1,4 +1,4 @@
-FROM node:16-buster as build
+FROM amd64/node:16-buster as build
 
 WORKDIR /cultree-client
 
@@ -23,5 +23,3 @@ COPY nginx/nginx.conf /etc/nginx/conf.d
 EXPOSE 80
 
 CMD ["/bin/bash", "-c", "nginx -g \"daemon off;\""]
-
-
