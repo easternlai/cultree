@@ -18,9 +18,11 @@ app.use(express.json());
 
 app.use("/api", apiRouter);
 
+// 'mongodb://mongodb-service:27017'
+
 (async function () {
   try {
-    await mongoose.connect('mongodb://mongodb-service:27017', {
+    await mongoose.connect(process.env.mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
