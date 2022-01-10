@@ -1,6 +1,6 @@
 const ObjectId = require("mongoose").Types.ObjectId;
 const fs = require("fs");
-const S3 = require("aws-sdk/clients/S3");
+const AWS = require("aws-sdk");
 const Event = require("../models/Event");
 const ParticipantList = require("../models/ParticipantList");
 const Comment = require("../models/Comment");
@@ -31,7 +31,7 @@ module.exports.createEvent = async (req, res, next) => {
   try {
     if (req.file) {
       const fileStream = fs.createReadStream(req.file.path);
-      s3 = new S3({
+      s3 = new AWS.S3({
         region: process.env.S3_REGION,
         accessKeyId: process.env.S3_ACCESS_KEY,
         secretAccessKey: process.env.S3_SECRET_KEY,

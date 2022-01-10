@@ -1,17 +1,16 @@
 const fs = require("fs");
-const S3 = require("aws-sdk/clients/S3");
+const AWS = require("aws-sdk");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 const User = require("../models/User");
 const Album = require("../models/Album");
 const Photo = require("../models/Photo");
-const { Console } = require("console");
 
 const uploadPhotos = async (file, userId, albumId) => {
   let image = undefined;
   const fileStream = fs.createReadStream(file.path);
 
-  s3 = new S3({
+  s3 = new AWS.S3({
     region: process.env.S3_REGION,
     accessKeyId: process.env.S3_ACCESS_KEY,
     secretAccessKey: process.env.S3_SECRET_KEY,
