@@ -20,7 +20,7 @@ app.use("/api", apiRouter);
 
 (async function () {
   try {
-    await mongoose.connect(process.env.mongoURI, {
+    await mongoose.connect('mongodb://mongodb-service:27017', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -38,7 +38,7 @@ const expressServer = app.listen(PORT, () => {
 const io = require("socket.io")(expressServer, {
   path: "/socket/",
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://cultree-client-service:3000",
     methods: ["*"],
   },
 });
