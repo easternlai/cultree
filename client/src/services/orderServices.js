@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:8080";
+import {apiUrl} from './servicesTypes';
 
 export const placeOrderService = async (token, items) => {
   try {

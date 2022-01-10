@@ -1,8 +1,9 @@
 import axios from "axios";
+import {apiUrl} from './servicesTypes';
 const yelpApiKey =
   "U-8w66jBxV3tGqzpsZB78XWWSAOO77l2kQQMQhPwmtROCyYONtLYVozDupjOSXlyzPzRpL5SN-n20pjpmWHvq5LGq_Fc6spSeXZND9gf7FMLXY1pWL_9J3EZ1H5mYXYx";
 
-const apiUrl = "http://localhost:8080";
+
 
 export const createEvent = async(token, type, name, location, address, date, time, caption, imageLink) => {
   try {
@@ -84,6 +85,7 @@ export const deleteComment = async (commentId, token) => {
 
 
 export const yelpSearch = async (search) => {
+  console.log(search);
 
     try {
         const response = await axios(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${search}&location=94111`, {
@@ -95,6 +97,7 @@ export const yelpSearch = async (search) => {
                 Authorization: `Bearer ${yelpApiKey}`
             },
         });
+        console.log(response);
         return (response.data.businesses);
     } catch (err) {
         console.log(err.response);

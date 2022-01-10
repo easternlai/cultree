@@ -1,7 +1,10 @@
 import io from 'socket.io-client';
 
+import {apiUrl} from './servicesTypes';
+
 export const connect = () => {
-    const socket = io('http://localhost:8080',{
+    const socket = io(apiUrl,{
+        path: "/socket/",
         query: {
             token: localStorage.getItem('token')
         }
