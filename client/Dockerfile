@@ -1,4 +1,4 @@
-FROM amd64/node:16-buster as build
+FROM node:16-buster as build
 
 WORKDIR /cultree-client
 

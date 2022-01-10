@@ -1,4 +1,4 @@
-FROM amd64/node:16-alpine3.14
+FROM node:16-alpine3.14
 
 WORKDIR /cultree-server
 
