@@ -98,8 +98,8 @@
     display: grid;
     max-width: 80%;
     grid-template-columns:
-      minmax(220px, 1.5fr) minmax(220px, 1.5fr) minmax(120px, 1fr)
-      minmax(80px, 1fr) minmax(80px, 1fr);
+      minmax(190px, 1.3fr) minmax(280px, 1.7fr) minmax(75px, .8fr)
+      minmax(80px, .8fr) minmax(80px, .8fr);
 
     &--header {
       background-color: $color-secondary-red;

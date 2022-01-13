@@ -53,6 +53,7 @@ export function App({ loginStart, connectSocket, currentUser, authToken, fetchin
       <Fragment>
         <Switch>
           <Route path="/login" component={LoginPage} />
+          <Route path="/demologin/:demoEmail/:demoPassword" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <ProtectedRoute exact path="/" component={HomePage} />
           <ProtectedRoute path="/event/:eventId" component={EventPage} />

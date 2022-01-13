@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import { connect } from "react-redux";
 import { loginStart } from "../../redux/user/userActions";
 
@@ -6,6 +7,20 @@ const LoginForm = ({ loginStart, error }) => {
   const [fetching, setFetching] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const {demoEmail, demoPassword} =  useParams();
+
+  useEffect(() => {
+    if(demoEmail) {
+      setEmail(demoEmail);
+    }
+  
+    if(demoPassword){
+      setPassword(demoPassword);
+    }
+    
+  }, []);
+
 
 
   const handleSubmit = async (e) => {
@@ -16,7 +31,6 @@ const LoginForm = ({ loginStart, error }) => {
     }
   };
 
-  console.log(error);
   return (
     <form onSubmit={handleSubmit} className="form">
       <input
@@ -24,6 +38,7 @@ const LoginForm = ({ loginStart, error }) => {
         maxLength="30"
         name="email"
         placeholder="email"
+        value={email}
         className="form__input heading-3"
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -33,6 +48,7 @@ const LoginForm = ({ loginStart, error }) => {
         name="password"
         placeholder="password"
         className="form__input heading-3"
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
       <button

@@ -88,7 +88,7 @@ export const yelpSearch = async (search) => {
   console.log(search);
 
     try {
-        const response = await axios(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${search}&location=94111`, {
+        const response = await axios(`https://peaceful-ocean-40125.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${search}&location=94111`, {
             method: 'GET',
             headers: {
                 "accept": "application/json",
