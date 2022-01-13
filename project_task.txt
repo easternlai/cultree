@@ -1,35 +1,35 @@
 APP WIDE
-- create announcments
 - create sortable events (past, all, upcoming)
 - create Surveys
 - Create Bookmarks
-- User admin portal (add store credit, delete user)
-- Store admin portal ( fill orders)
+- Delete User
 - Create ability to change password
-- create ability to post avatar
-- Testing
+- Enzyme
 - make dotted options (currently commentOptions) transferable
-- Service Worker
+- Service Workers
 
 
 BACK_END
 - Improve mongodb aggregate for attendees names.  Currently combining two different aggregates
+- Automate secret keys for production runs
+- have mongodb run based on if production or dev
 
 Front_END
 - determine which components be combined
 - make app responsive
 - make sidebar scrollable
 - create avatar
+- Use forms that have time/date
 
 INFRASTRUCTURE
-- push to AWS
 - Create different branches for frontend/backend/etc
-- Refine process to update code and push to password
-
-Improve naming convention
-- Change "admin" in Users Model to "privileges"
+- Add Nginx proxy
+- get run build to run stable (webpacks?)
+- Build Kubernetes
+- Set up HTTPS and DNS
 
 Things to do before next data refresh
 - change start date and event date to use moment
 - tshirt size
 - create first/last/display name fields
+- Change "admin" in Users Model to "privileges"
