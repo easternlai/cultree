@@ -1,5 +1,5 @@
 const fs = require("fs");
-const S3 = require("aws-sdk");
+const AWS = require("aws-sdk");
 
 const Product = require("../models/Product");
 const User = require("../models/User");

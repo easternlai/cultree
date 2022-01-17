@@ -6,13 +6,16 @@ APP WIDE
 - Create ability to change password
 - Enzyme
 - make dotted options (currently commentOptions) transferable
+- make dotted options listen for outside window clicks
 - Service Workers
+- only display upcoming events
 
 
 BACK_END
 - Improve mongodb aggregate for attendees names.  Currently combining two different aggregates
 - Automate secret keys for production runs
 - have mongodb run based on if production or dev
+- nodemailer and gmail to send emails
 
 Front_END
 - determine which components be combined
@@ -20,6 +23,7 @@ Front_END
 - make sidebar scrollable
 - create avatar
 - Use forms that have time/date
+- Figure out how to make production build run well on all browsers
 
 INFRASTRUCTURE
 - Create different branches for frontend/backend/etc
@@ -27,6 +31,7 @@ INFRASTRUCTURE
 - get run build to run stable (webpacks?)
 - Build Kubernetes
 - Set up HTTPS and DNS
+
 
 Things to do before next data refresh
 - change start date and event date to use moment
