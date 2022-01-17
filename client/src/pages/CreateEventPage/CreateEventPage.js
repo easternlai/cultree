@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-
+import moment from "moment";
+import DateTimePicker from "react-datetime-picker";
+import spinner from "../../images/spinner1.gif";
 import { createEvent, yelpSearch } from "../../services/eventServices";
 
 const CreateEventPage = ({ token }) => {
+  const [fetching, setFetching] = useState(false);
   const [search, setSearch] = useState("");
   const [businesses, setBusinesses] = useState(undefined);
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [dateTime, setDateTime] = useState(new Date());
   const [caption, setCaption] = useState("");
   const [venue, setVenue] = useState("");
   const [address, setAddress] = useState("");
@@ -23,26 +24,27 @@ const CreateEventPage = ({ token }) => {
       name,
       venue,
       address,
-      date,
-      time,
+      String(moment(dateTime).format("mm/yy")),
+      String(moment(dateTime).format("h:mma")),
       caption,
       image
     );
     setName("");
-    setDate("");
-    setTime("");
+    setDateTime("");
     setCaption("");
     setImage("");
     setVenue("");
     setSearch("");
     setBusinesses("");
-    setAddress('');
+    setAddress("");
   };
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
+    setFetching(true);
     (async function () {
       const allBusinesses = await yelpSearch(search);
+      setFetching(false);
       if (allBusinesses) {
         setBusinesses(allBusinesses.slice(0, 1));
       }
@@ -74,6 +76,8 @@ const CreateEventPage = ({ token }) => {
         </div>
       </div>
 
+      {!businesses && fetching && <img className="spinner-2" src={spinner} />}
+
       {businesses && (
         <div className="create-event__yelp">
           {businesses.map((business, idx) => (
@@ -88,7 +92,15 @@ const CreateEventPage = ({ token }) => {
                 onClick={() => {
                   setVenue(business.name);
                   setImage(business.image_url);
-                  setAddress(business.location.address1 + " " + business.location.address2 + " " + business.location.address3 + " " + business.location.city);
+                  setAddress(
+                    business.location.address1 +
+                      " " +
+                      business.location.address2 +
+                      " " +
+                      business.location.address3 +
+                      " " +
+                      business.location.city
+                  );
                 }}
               >
                 Select
@@ -99,6 +111,12 @@ const CreateEventPage = ({ token }) => {
       )}
 
       <form className="create-event__form" onSubmit={handleSubmit}>
+        <DateTimePicker
+          className="create-event__form--input create-event__form--date-time"
+          onChange={setDateTime}
+          value={dateTime}
+        />
+
         <input
           type="text"
           className="create-event__form--input"
@@ -115,6 +133,7 @@ const CreateEventPage = ({ token }) => {
           placeholder="venue"
           maxLength="30"
         />
+
         <input
           type="text"
           className="create-event__form--input"
@@ -123,22 +142,7 @@ const CreateEventPage = ({ token }) => {
           placeholder="address"
           maxLength="30"
         />
-        <input
-          type="text"
-          className="create-event__form--input"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          placeholder="date"
-          maxLength="30"
-        />
-        <input
-          type="text"
-          className="create-event__form--input"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          placeholder="time"
-          maxLength="30"
-        />
+
         <textarea
           type="text"
           className="create-event__form--input textarea-styles"

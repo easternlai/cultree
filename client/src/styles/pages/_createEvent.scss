@@ -15,7 +15,6 @@
       padding: 20px 10px;
       border-radius: $radius-items;
       background-color: $color-grey;
-  
 
       &--input {
         font-size: 1.5rem;
@@ -39,7 +38,7 @@
         border: none;
         width: 60px;
         cursor: pointer;
-        opacity: 90px;
+        opacity: 90%;
       }
     }
   }
@@ -47,15 +46,15 @@
   &__yelp {
     margin-bottom: 20px;
 
-    &__item{
+    &__item {
       display: flex;
       flex-direction: column;
 
-      &--img{
+      &--img {
         width: 300px;
         border-radius: $radius-items;
       }
-      &--select{
+      &--select {
         background-color: $color-secondary-red;
         width: 80px;
         text-align: center;
@@ -77,10 +76,20 @@
       margin-bottom: 20px;
       border-radius: $radius-items;
       border: 1px solid gray;
-      
 
       &:focus {
         outline: none;
+      }
+    }
+
+    &--date-time {
+      font-size: 1.5rem;
+      padding: 10px;
+
+      & input {
+        &:focus {
+          outline: none;
+        }
       }
     }
     &--submit {
@@ -92,6 +101,7 @@
       color: $color-white;
       border-radius: $radius-items;
       border: none;
+      cursor: pointer;
     }
   }
 }

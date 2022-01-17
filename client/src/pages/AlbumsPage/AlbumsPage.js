@@ -18,7 +18,7 @@ const AlbumPage = ({ user }) => {
   if (fetching) {
     return (
       <div className="spinner-wrapper-2">
-        <img src={spinner} className="spinner-1 " />
+        <img src={spinner} className="spinner-1" />
       </div>
     );
   }
