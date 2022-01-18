@@ -18,13 +18,14 @@ const CreateEventPage = ({ token }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     createEvent(
       token,
       "standard",
       name,
       venue,
       address,
-      String(moment(dateTime).format("mm/yy")),
+      String(moment(dateTime).format("DD-MMM")),
       String(moment(dateTime).format("h:mma")),
       caption,
       image

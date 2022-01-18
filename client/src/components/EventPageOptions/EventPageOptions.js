@@ -8,6 +8,7 @@ const EventPageOptions = ({token, eventId}) => {
     const [isActive, setIsActive] = useState(false);
     const handleOptionsClick = () => setIsActive(!isActive);
     const history = useHistory();
+    
 
     useEffect(()=> {
         const pageClickEvent = (e) => {

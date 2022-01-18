@@ -72,7 +72,7 @@ const EventPage = ({ token, currentUser }) => {
           <div className="event-page__center__content">
             <div className="event-page__center__content__heading">
               <div className="heading-3__bold">{state.data.name}</div>
-              <EventPageOptions token={state.data.organizer._id==currentUser._id?token: false} eventId={state.data.id}/>
+              <EventPageOptions token={state.data.organizer._id==currentUser._id ? token: false} eventId={state.data.id}/>
             </div>
             <div className="event-page__center__content--caption heading-4">
               {state.data.caption}
