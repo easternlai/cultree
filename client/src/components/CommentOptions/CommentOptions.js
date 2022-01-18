@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { deleteComment } from "../../services/eventServices";
 
@@ -7,9 +7,29 @@ const CommentOptions = ({ token, commentId, dispatch }) => {
   const [isActive, setIsActive] = useState(false);
   const handleOptionsClick = () => setIsActive(!isActive);
 
+  useEffect(() => {
+    const pageClickEvent = (e) => {
+      console.log(dropdownRef);
+      if(dropdownRef.current !== null && !dropdownRef.current.contains(e.target) ){
+        setIsActive(!isActive);
+      }
+    };
+    if (isActive) {
+      window.addEventListener("click", pageClickEvent);
+    }
+
+    return () => {
+      window.removeEventListener("click", pageClickEvent);
+    };
+  },[isActive]);
+
+  const handleAbuse = ()=>{
+    setIsActive(!isActive);
+  }
+
   const handleDelete = () => {
     deleteComment(commentId, token);
-    dispatch({type: "DELETE_COMMENT", payload: {commentId}});
+    dispatch({ type: "DELETE_COMMENT", payload: { commentId } });
     setIsActive(false);
   };
   return (
@@ -25,7 +45,7 @@ const CommentOptions = ({ token, commentId, dispatch }) => {
         }`}
       >
         <ul>
-          <li>Report abuse</li>
+          <li onClick={handleAbuse}>Report abuse</li>
           {token && <li onClick={handleDelete}>Delete</li>}
         </ul>
       </nav>

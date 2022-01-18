@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoMdAppstore } from "react-icons/io";
 import { connect } from "react-redux";
 import { editUserService } from "../../services/adminService";
@@ -8,6 +8,23 @@ const UserDetails = ({ user, token, dispatch, currentUser, updateBalanceAction }
   const [edit, setEdit] = useState(false);
   const [admin, setAdmin] = useState(user.admin);
   const [balance, setBalance] = useState(user.balance);
+  const editRef = useRef(null);
+
+  useEffect(()=> {
+    const pageClickEvent = (e) => { 
+      if(editRef !== null && !editRef.current.contains(e.target)){
+        setEdit(!edit);
+      }
+    };
+
+    if(edit){
+      window.addEventListener('click', pageClickEvent);
+    }
+
+    return () => {
+      window.removeEventListener('click', pageClickEvent)
+    };
+  }, [edit]);
 
   const handleCancel = () => {
     setBalance(user.balance);
@@ -23,7 +40,7 @@ const UserDetails = ({ user, token, dispatch, currentUser, updateBalanceAction }
   };
 
   return (
-    <div id={user._id} className="manage-users__user-list">
+    <div ref={editRef} id={user._id} className="manage-users__user-list">
       <div className="heading-3 manage-users__user-list__item">
         {user.fullName}
       </div>

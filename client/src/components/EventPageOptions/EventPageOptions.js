@@ -11,7 +11,6 @@ const EventPageOptions = ({token, eventId}) => {
 
     useEffect(()=> {
         const pageClickEvent = (e) => {
-            console.log(e.target);
             if(dropdownRef.current !== null && !dropdownRef.current.contains(e.target)){
                 setIsActive(!isActive);
             }
