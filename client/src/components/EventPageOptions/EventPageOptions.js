@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {BiDotsHorizontal} from 'react-icons/bi';
 import { useHistory } from 'react-router-dom';
 import { deleteEvent } from '../../services/eventServices';
@@ -9,10 +9,27 @@ const EventPageOptions = ({token, eventId}) => {
     const handleOptionsClick = () => setIsActive(!isActive);
     const history = useHistory();
 
+    useEffect(()=> {
+        const pageClickEvent = (e) => {
+            console.log(e.target);
+            if(dropdownRef.current !== null && !dropdownRef.current.contains(e.target)){
+                setIsActive(!isActive);
+            }
+        }
+        if (isActive){
+            window.addEventListener('click', pageClickEvent);
+        }
+
+        return () => {
+            window.removeEventListener('click', pageClickEvent);
+        }
+    }, [isActive]);
+
     const handleDelete = () => {
         deleteEvent(eventId, token);
         history.push('/');
     }
+    console.log(dropdownRef)
 
     return (
         <div className="event-page-options">
