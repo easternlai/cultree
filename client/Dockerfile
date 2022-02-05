@@ -1,5 +1,7 @@
 FROM node:16-buster
 
+MAINTAINER Eastern Lai <eastern.lai@gmail.com>
+
 WORKDIR /cultree-client
 
 COPY package.json /cultree-client/package.json

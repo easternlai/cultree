@@ -40,7 +40,7 @@ const expressServer = app.listen(PORT, () => {
 const io = require("socket.io")(expressServer, {
   path: "/socket/",
   cors: {
-    origin: "http://localhost:3000",
+    origin: "http://localhost:80",
     methods: ["*"],
   },
 });

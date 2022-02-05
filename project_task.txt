@@ -1,28 +1,31 @@
 APP WIDE
 - create sortable events (past, all, upcoming)
 - create Surveys
+- Create Raffles
 - Create Bookmarks
+- change start date and event date to use moment
+- create avatar
+- tshirt size
 - Delete User
 - Create ability to change password
 - Enzyme
-- make dotted options (currently commentOptions) transferable
-- make dotted options listen for outside window clicks
 - Service Workers
 - only display upcoming events
+- Change "admin" in Users Model to "privileges"
+- create first/last/display name fields
 
 
 BACK_END
 - Improve mongodb aggregate for attendees names.  Currently combining two different aggregates
-- Automate secret keys for production runs
 - have mongodb run based on if production or dev
+- automate password security
 - nodemailer and gmail to send emails
+- clear upload
 
 Front_END
 - determine which components be combined
 - make app responsive
 - make sidebar scrollable
-- create avatar
-- Use forms that have time/date
 - Figure out how to make production build run well on all browsers
 
 INFRASTRUCTURE
@@ -31,10 +34,12 @@ INFRASTRUCTURE
 - get run build to run stable (webpacks?)
 - Build Kubernetes
 - Set up HTTPS and DNS
-
-
-Things to do before next data refresh
-- change start date and event date to use moment
-- tshirt size
-- create first/last/display name fields
-- Change "admin" in Users Model to "privileges"
+- set up Kubernetes secret/configmap
+- set up persistent data (docker named volumes and/or kubernetes)
+- create a docker volume if necessary 
+  docke run -v /app/node_modules -p <port:port> -v $(pwd):/client <image_id>
+  or in docker-compose
+  build:
+    context: . 
+    dockerfile: Dockerfile.dev
+    

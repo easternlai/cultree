@@ -25,7 +25,7 @@ const CreateEventPage = ({ token }) => {
       name,
       venue,
       address,
-      String(moment(dateTime).format("DD-MMM")),
+      String(moment(dateTime).format("M/D")),
       String(moment(dateTime).format("h:mma")),
       caption,
       image

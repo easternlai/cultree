@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongodb-service:
+    image: 'mongodb'
+  client-service:
+    build: ./client
+    ports:
+      - "80:80"
+    restart: always
+    #volumes:
+      #- /client/node_modules
+      #- .:/client
+  server-service:
+    build: ./server
+    ports:
+      - "8000:8000"
+    restart: always
+  # tests:
+  #   build:
+  #     context: ./client
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - /client/node_modules
+  #     - .:/client
+  #   command: ["npm", "run", "test"]
