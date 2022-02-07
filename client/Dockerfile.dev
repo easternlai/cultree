@@ -1,3 +1,20 @@
+FROM node:16-buster
+
+MAINTAINER Eastern Lai <eastern.lai@gmail.com>
+
+WORKDIR /client-service
+
+COPY package.json /client-service/package.json
+
+RUN npm install
+
+COPY . /client-service
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+
 #need to move dev here when production exit
 #Need to target this docker files on Docker build
 #docker build -f Dockerfile.dev

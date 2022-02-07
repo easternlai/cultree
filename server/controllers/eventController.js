@@ -32,14 +32,14 @@ module.exports.createEvent = async (req, res, next) => {
     if (req.file) {
       const fileStream = fs.createReadStream(req.file.path);
       s3 = new AWS.S3({
-        region: process.env.S3_REGION,
-        accessKeyId: process.env.S3_ACCESS_KEY,
-        secretAccessKey: process.env.S3_SECRET_KEY,
+        region: secrets.S3_REGION,
+        accessKeyId: secrets.S3_ACCESS_KEY,
+        secretAccessKey: secrets.S3_SECRET_KEY,
       });
 
       s3Response = await s3
         .upload({
-          Bucket: process.env.S3_BUCKET,
+          Bucket: secrets.S3_BUCKET,
           Body: fileStream,
           Key: req.file.filename,
         })

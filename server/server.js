@@ -5,24 +5,27 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const app = express();
 const apiRouter = require("./routes");
+const secrets = require('./secrets');
 
 const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+// if (process.env.NODE_ENV !== "production") {
+//   require("dotenv").config();
+// }
 
 app.use(express.json());
 
 app.use("/api", apiRouter);
 
-// 'mongodb://mongodb-service:27017'
+//'mongodb://mongodb-service:27017'
+//process.env.mongoURI
+
 
 (async function () {
   try {
-    await mongoose.connect(process.env.mongoURI, {
+    await mongoose.connect('mongodb://mongodb-service:27017', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
@@ -51,7 +54,7 @@ io.use((socket, next) => {
   const token = socket.handshake.query.token;
   if (token) {
     try {
-      const user = jwt.verify(token, process.env.JWT_SECRET);
+      const user = jwt.verify(token, secrets.JWT_SECRET);
 
       if (!user) {
         return next(new Error("Not authorized."));

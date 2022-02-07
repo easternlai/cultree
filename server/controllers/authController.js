@@ -4,6 +4,7 @@ const Company = require("../models/Company");
 const User = require("../models/User");
 const Cart = require('../models/Cart');
 const ObjectId = require('mongoose').Types.ObjectId;
+const secrets = require('../secrets');
 
 const {
   validateFullName,
@@ -18,7 +19,7 @@ module.exports.login = async (req, res, next) => {
 
   try {
     if (token) {
-      const decodedId = await jwt.verify(token, process.env.JWT_SECRET).id;
+      const decodedId = await jwt.verify(token, secrets.JWT_SECRET).id;
       const decodedUser = await User.findById(decodedId);
 
       return res.send({
@@ -68,7 +69,7 @@ module.exports.login = async (req, res, next) => {
           tenantId: user.tenantId,
           balance: user.balance
         },
-        token: jwt.sign({ id: user._id, tenantId: user.tenantId }, process.env.JWT_SECRET, {
+        token: jwt.sign({ id: user._id, tenantId: user.tenantId }, secrets.JWT_SECRET, {
           expiresIn: "5h",
         }),
       });
@@ -151,7 +152,7 @@ module.exports.registerTenant = async (req, res, next) => {
         admin: user.admin,
         tenantId: user.tenantId,
       },
-      token: jwt.sign({ id: user._id, tenantId: user.tenantId }, process.env.JWT_SECRET, {
+      token: jwt.sign({ id: user._id, tenantId: user.tenantId }, secrets.JWT_SECRET, {
         expiresIn: "5h",
       }),
     });

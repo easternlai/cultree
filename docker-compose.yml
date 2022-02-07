@@ -1,20 +1,47 @@
 version: '3'
 services:
-  mongodb-service:
-    image: 'mongodb'
-  client-service:
-    build: ./client
-    ports:
+  nginx:
+    container_name: nginx-service
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports: 
       - "80:80"
+  mongodb:
+    container_name: mongodb-service
+    image: 'mongo:latest'
+    # ports:
+    #   - "27017:27017"
+  client:
+    container_name: client-service
+    stdin_open: true
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /client-service/node_modules
+      - ./client:/server-service
+    # ports:
+    #   - "3000:3000"
     restart: always
-    #volumes:
-      #- /client/node_modules
-      #- .:/client
-  server-service:
-    build: ./server
-    ports:
-      - "8000:8000"
+  server:
+    container_name: server-service
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - /server-service/node_modules
+      - ./server:/server-service
+    # ports:
+    #   - "8000:8000"
     restart: always
+    environment:
+      - JWT_SECRET=tokenencryption
+      - S3_BUCKET=cultureappreactbucket
+      - S3_REGION=us-west-2
+      - S3_ACCESS_KEY=AKIA4O5HLMLNEPXPS2P5
+      - S3_SECRET_KEY=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
   # tests:
   #   build:
   #     context: ./client
